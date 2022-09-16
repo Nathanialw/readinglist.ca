@@ -273,3 +273,7 @@ ul {
   height: 0.25rem;
   margin: 0 auto;
 }
+
+h1 {
+  background: red;
+}
