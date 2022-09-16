@@ -1,8 +1,5 @@
-/* temp */
+@import url(./css/normalize.css);
 
-body {
-  padding: 2rem 5rem;
-}
 /* temp */
 
 *,
@@ -274,6 +271,20 @@ ul {
   margin: 0 auto;
 }
 
-h1 {
-  background: blue;
+/* custom styles */
+
+nav {
+  background: var(--primary-400);
+}
+
+.chart-links {
+  background: var(--primary-200);
+}
+
+.chart-links a:hover {
+  color: var(--white);
+}
+
+.random-chart-list {
+  background: var(--primary-500);
 }
