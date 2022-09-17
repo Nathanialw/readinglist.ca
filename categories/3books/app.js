@@ -35,7 +35,7 @@ const the_fall_of_carthage = {
   subtitle: "",
   author: "Adrian Goldsworthy",
   image:
-    "/images/books/non-fiction/history/rome/republic/the_fall_of_carthage-400.jpg",
+    "/assets/images/books/non-fiction/history/rome/republic/the_fall_of_carthage-400.jpg",
 };
 
 document.getElementById("the_fall_of_carthage_author").innerHTML =
@@ -62,7 +62,7 @@ const the_storm_before_the_storm = {
   subtitle: "the beginning of the end of the Roman Republic",
   author: "mike duncan",
   image:
-    "/images/books/non-fiction/history/rome/republic/the_storm_before_the_storm-400.jpg",
+    "/assets/images/books/non-fiction/history/rome/republic/the_storm_before_the_storm-400.jpg",
 };
 
 document.getElementById("the_storm_before_the_storm_author").innerHTML =
@@ -88,7 +88,7 @@ const rubicon = {
     "In 49 B.C., the seven hundred fifth year since the founding of Rome, Julius Caesar crossed a small border river called the Rubicon and plunged Rome into cataclysmic civil war. Tom Holland’s enthralling account tells the story of Caesar’s generation, witness to the twilight of the Republic and its bloody transformation into an empire. From Cicero, Spartacus, and Brutus, to Cleopatra, Virgil, and Augustus, here are some of the most legendary figures in history brought thrillingly to life. Combining verve and freshness with scrupulous scholarship, Rubicon is not only an engrossing history of this pivotal era but a uniquely resonant portrait of a great civilization in all its extremes of self-sacrifice and rivalry, decadence and catastrophe, intrigue, war, and world-shaking ambition.",
   subtitle: "The Last Years of the Roman Empire",
   author: "Tom Holland",
-  image: "/images/books/non-fiction/history/rome/republic/rubicon.jpg",
+  image: "/assets/images/books/non-fiction/history/rome/republic/rubicon.jpg",
 };
 
 document.getElementById("rubicon_author").innerHTML = rubicon.author;

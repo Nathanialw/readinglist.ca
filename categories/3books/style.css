@@ -2,6 +2,13 @@
 
 /* temp */
 
+/* 
+** Book Template **
+
+
+
+*/
+
 *,
 ::after,
 ::before {
@@ -271,65 +278,86 @@ ul {
   margin: 0 auto;
 }
 
-/* custom styles */
-body {
-  max-width: 1170px;
-  background: var(--primary-100);
+/* book set overview info */
+
+.overview-chart {
+  text-align: center;
+}
+
+.overview-chart h1 {
+  padding-top: 4rem;
+}
+
+.overview-chart img {
+  padding: 2rem;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
-nav {
-  box-shadow: var(--shadow-3);
+.overview-text {
+  max-width: 900px;
+  padding: 2rem;
+  text-align: justify;
+  hyphens: auto;
+  margin: 0 auto;
 }
 
-.navbar {
-  background: var(--primary-400);
-  display: grid;
-  align-content: center;
-  justify-content: center;
-  grid-template-columns: 1fr 1fr;
-  /* gap: ; */
-}
+/* specific book info */
 
-.nav-links {
-}
-
-.links-container {
-  background: var(--primary-200);
-  background: var(--primary-200);
-  padding: 2rem 0;
-}
-.chart-links {
+.container {
+  padding: 2rem 2rem;
   display: grid;
   justify-items: center;
-  /* grid-template-columns: 1fr 1fr; */
 }
 
-.chart-links a {
-  /* border: 2px solid red; */
+.card {
+  display: grid;
 }
 
-.chart-links a:hover {
-  color: var(--white);
+.buy-links {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
 }
 
-.random-chart-list {
-  background: var(--primary-500);
+.book-info {
+  text-align: center;
 }
 
-.footer {
-  background: var(--primary-600);
-  height: 10rem;
+.book-subtitle {
+  font-size: 1.2rem;
 }
+
+.book-author {
+  font-size: 1rem;
+}
+
+.container p {
+  hyphens: auto;
+  text-align: justify;
+}
+
+/* dynamic layout */
 
 @media screen and (min-width: 768px) {
-  .chart-links {
+  .card {
     grid-template-columns: 1fr 1fr;
-    margin-left: 10rem;
-    margin-right: 10rem;
+    max-width: 800px;
+    align-items: center;
   }
-  .chart-links-misc {
-    margin-top: 3rem;
-    grid-template-columns: 1fr;
+
+  .book-info {
+    max-width: 400px;
+    width: 40vw;
+  }
+
+  .book-img {
+    width: 40vw;
+    max-width: 400px;
+    margin-right: 2rem;
+  }
+
+  .book-synopsis {
+    margin-top: 2rem;
+    max-width: 900px;
   }
 }
