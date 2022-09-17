@@ -329,6 +329,7 @@ main {
 
 .nav-links {
   font-size: 2rem;
+  text-transform: capitalize;
 }
 
 .nav-links a {
@@ -350,6 +351,7 @@ main {
 .chart-links {
   display: grid;
   justify-items: center;
+  text-transform: capitalize;
 }
 
 .chart-links a:hover {
