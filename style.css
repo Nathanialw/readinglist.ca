@@ -1,6 +1,27 @@
-@import url(./css/normalize.css);
+@import url(/css/normalize.css);
 
 /* temp */
+
+/* 
+** Book Template **
+
+<div class="book">
+  <h1>Book Title</h1>
+  <img class="img img-descr" src="" alt="">
+    <ul class="buy-links">
+      <a href="#" target="_blank">pdf</a>
+      <a href="#" target="_blank">epub</a>
+      <a href="#" target="_blank">amazon e-book</a>
+      <a href="#" target="_blank">amazon soft</a>
+      <a href="#" target="_blank">amazon hard</a>
+      <a href="#" target="_blank">indigo soft</a>
+      <a href="#" target="_blank">indigo hard</a>
+      <a href="#" target="_blank">leatherbound</a>
+    </ul>
+  <p>description</p>
+</div>
+
+*/
 
 *,
 ::after,
