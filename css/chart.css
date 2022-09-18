@@ -53,6 +53,7 @@
 /* book set overview info */
 
 .overview-chart {
+  text-transform: capitalize;
   text-align: center;
 }
 
@@ -104,6 +105,7 @@
 }
 
 .container p {
+  text-transform: capitalize;
   hyphens: auto;
   text-align: justify;
 }
