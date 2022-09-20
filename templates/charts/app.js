@@ -1,21 +1,31 @@
-//   ////////////////
-const book_name = {
-  title: "",
-  subtitle: "",
-  author: "",
-  synopsis: "",
-  image: "",
-};
+//   /////////////////*
+/*
 
-document.getElementById("title").innerHTML = book_name.title;
+document.getElementById("_title").innerHTML = .title;
 
-document.getElementById("subtitle").innerHTML = book_name.subtitle;
+document.getElementById("_subtitle").innerHTML =
+  .subtitle;
 
-document.getElementById("author").innerHTML = book_name.author;
+document.getElementById("_author").innerHTML = .author;
 
-document.getElementById("synopsis").innerHTML = book_name.synopsis;
+document.getElementById("_synopsis").innerHTML =
+  .synopsis;
 
-document.getElementById("image").innerHTML =
-  "<img src='" + book_name.image + "' class='img' alt=''>";
+document.getElementById("_image").innerHTML = .image;
 
-///////////////////////////////////
+document.getElementById("_link_pdf").innerHTML = .link_pdf;
+
+document.getElementById("_link_epub").innerHTML = .link_epub;
+
+document.getElementById("_link_amazon").innerHTML =
+  .link_amazon;
+
+document.getElementById("_link_indigo").innerHTML =
+  .link_indigo;
+
+document.getElementById("_link_handmade").innerHTML =
+  .link_handmade;
+
+
+
+  */ ///////////////////////////////////
