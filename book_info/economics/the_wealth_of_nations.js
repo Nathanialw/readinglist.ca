@@ -5,7 +5,7 @@ const the_wealth_of_nations = {
   synopsis:
     "Adam Smith's The Wealth of Nations was recognized as a landmark of human thought upon its publication in 1776. As the first scientific argument for the principles of political economy, it is the point of departure for all subsequent economic thought. Smith's theories of capital accumulation, growth, and secular change, among others, continue to be influential in modern economics.This reprint of Edwin Cannan's definitive 1904 edition of The Wealth of Nations includes Cannan's famous introduction, notes, and a full index, as well as a new preface written especially for this edition by the distinguished economist George J. Stigler. Mr. Stigler's preface will be of value for anyone wishing to see the contemporary relevance of Adam Smith's thought.",
   image:
-    "<img src='/categories/acedemic/index/economics/images/the-wealth-of-nations.jpg' class='img' alt=''>",
+    "<img src='/assets/images/books/non-fiction/acedemic/economics/the-wealth-of-nations.jpg' class='img' alt=''>",
   link_pdf:
     "<a class='fa fa-file-pdf' href='https://b-ok.cc/book/550861/3cf9eb' target='_blank'></a>",
   link_epub:
