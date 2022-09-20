@@ -4,7 +4,7 @@ const the_making_of_the_middle_ages = {
   subtitle: "",
   author: "r. w. southern",
   synopsis:
-    "distinguished historian presents an absorbing study of the main personalities and the influences that molded the history of Western Europe from the late tenth to the early thirteenth centuries—the formative period of modern Western civilization. R. W. Southern describes the chief forms of social, political, and religious organization, analyzing a wealth of concrete, highly significant episodes. He recaptures the personal experiences and the individual consciences of the men who guided 'the making of the Middle Ages.'",
+    "Distinguished historian presents an absorbing study of the main personalities and the influences that molded the history of Western Europe from the late tenth to the early thirteenth centuries—the formative period of modern Western civilization. R. W. Southern describes the chief forms of social, political, and religious organization, analyzing a wealth of concrete, highly significant episodes. He recaptures the personal experiences and the individual consciences of the men who guided 'the making of the Middle Ages.'",
   image: "./images/the-making-of-the-middle-ages.jpg",
 };
 
