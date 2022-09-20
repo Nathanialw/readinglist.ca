@@ -49,3 +49,19 @@
 }
 
 /* custom styles */
+
+.books {
+  text-align: center;
+  display: grid;
+  justify-items: center;
+}
+
+.book p {
+  text-align: justify;
+  margin-bottom: 5rem;
+}
+
+.img-descr {
+  width: 400px;
+  margin: 0 auto;
+}
