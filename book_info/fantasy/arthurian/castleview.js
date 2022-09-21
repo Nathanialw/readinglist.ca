@@ -15,3 +15,4 @@ const castleview = {
     "  <a class='' href='https://www.chapters.indigo.ca/en-ca/books/castleview/9781429966689-item.html?ikwid=castleview&ikwsec=Home&ikwidx=0#algoliaQueryId=7738d263509d192a2da94d387cc4246a' target='_blank'>indigo</a>",
   link_handmade: "<a class='fa fa-book' href='#' target='_blank'></a>",
 };
+

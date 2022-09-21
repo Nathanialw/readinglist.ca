@@ -19,9 +19,7 @@ TODO:
 
 
 		update to template:
-			fantas/arthuria: update js to individual files
-
-
+			
 			fill in date of the skele:
 			litera/egypt   : fill data
 			litera/hittit  : fill data

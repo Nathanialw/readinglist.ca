@@ -110,18 +110,21 @@
 }
 
 /* dynamic layout */
+@media screen and (max-width: 768px) {
+  .book-img {
+    margin: 0 auto;
+    width: 80vw;
+  }
+}
 
 @media screen and (min-width: 768px) {
   .card {
     grid-template-columns: 1fr 1fr;
     margin-top: 4rem;
-    max-width: 800px;
+    width: 992px;
     align-items: center;
     position: relative;
   }
-
-  /* .book-info {
-  } */
 
   .book-img {
     margin-right: 2rem;
@@ -136,16 +139,16 @@
   .book-img::before {
     content: "";
     position: absolute;
-    border: 0.5rem solid var(--primary-600);
+    border: 1rem solid var(--primary-600);
     border-radius: var(--borderRadius);
     width: calc(50% - 2rem);
     height: 100%;
-    left: -1.5rem;
-    top: -1.5rem;
+    left: -2.5rem;
+    top: -2.5rem;
   }
 
   .book-synopsis {
     margin-top: 2rem;
-    max-width: 850px;
+    max-width: 992px;
   }
 }
