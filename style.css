@@ -57,7 +57,7 @@ html {
   --borderRadius: 0.25rem;
   --letterSpacing: 1px;
   --transition: 0.2s ease-in-out all;
-  --max-width: 1120px;
+  --max-width: 1200px;
   --fixedWidth: 600px;
 
   /* box shadow */
@@ -130,6 +130,7 @@ a {
 ul {
   list-style-type: none;
   padding: 0;
+  margin: 0;
 }
 
 .img {
@@ -282,7 +283,7 @@ ul {
 
 .hero-center {
   position: relative;
-  max-width: 1170px;
+  max-width: var(--max-width);
   margin: 0 auto;
   background: var(--primary-400);
 }
@@ -300,10 +301,10 @@ ul {
 /* main area  */
 
 main {
-  max-width: 1170px;
+  max-width: var(--max-width);
   background: var(--white);
   margin: 0 auto;
-  min-height: calc(100vh - 78px - 125px);
+  min-height: calc(100vh - 77px - 125px);
 }
 
 /* links to charts */
@@ -313,15 +314,13 @@ main {
 }
 
 .chart-links {
-  flex-direction: column;
   display: flex;
-  margin: 0;
-  padding: 0;
+  flex-direction: column;
 }
 
 .chart-links a {
-  transition: var(--transition);
   display: block;
+  transition: var(--transition);
   font-size: 2rem;
   text-transform: capitalize;
 }

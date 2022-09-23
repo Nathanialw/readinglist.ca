@@ -4,11 +4,14 @@ nav {
   background: var(--white);
 }
 
+.nav-center {
+  margin: 0;
+}
+
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem;
 }
 
 .logo {
@@ -25,10 +28,12 @@ nav {
   border: transparent;
   color: var(--primary-500);
   font-size: 3.5rem;
+  transition: var(--transition);
 }
 
 .bars:hover {
   cursor: pointer;
+  color: var(--primary-300);
 }
 
 .nav-links {
@@ -37,25 +42,13 @@ nav {
   text-transform: capitalize;
   transition: var(--transition);
   margin: 0;
+  padding: 0;
   background: var(--white);
 }
 
 .show-links {
-  height: 240px;
-}
-
-.nav-links a {
-  display: block;
-  padding: 0 1rem;
-  transition: var(--transition);
-  color: var(--primary-500);
-  font-size: 2.75rem;
-}
-
-.nav-links a:hover {
-  padding-left: 2rem;
-  background: var(--primary-200);
-  color: var(--primary-900);
+  /* this needs to be dymanic, based on the height of the links */
+  height: 231px;
 }
 
 @media screen and (min-width: 768px) {
@@ -72,6 +65,7 @@ nav {
   }
 
   .nav-links {
+    align-self: stretch;
     text-transform: capitalize;
     display: flex;
     align-items: center;
@@ -79,15 +73,20 @@ nav {
   }
 
   .nav-links a {
+    align-self: stretch;
+    height: 100%;
     color: var(--primary-500);
     letter-spacing: var(--letterSpacing);
     font-weight: 600;
     transition: var(--transition);
+    display: block;
+    padding: 0 1rem;
+    font-size: 2.75rem;
   }
 
   .nav-links a:hover {
     padding-right: 2rem;
-    background: var(--primary-200);
-    color: var(--primary-900);
+    background: var(--primary-500);
+    color: var(--white);
   }
 }
