@@ -9,26 +9,13 @@
     <link rel="stylesheet" href="/assets/icons/css/all.css" />
     <!-- index styles -->
     <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/nav/style.css" />
     <link rel="stylesheet" href="/css/chart.css" />
     <!-- <link rel="stylesheet" href="./style.css" /> -->
   </head>
   <body>
     <!-- navigation bar at the top -->
-    <nav>
-      <div class="navbar">
-        <a href="/index.html">
-          <h1 class="logo">logo</h1>
-        </a>
-        <ul class="nav-links">
-          <a href="/index.html">home</a>
-          <a href="/about.html">about</a>
-          <a href="/contact.html">contact</a>
-        </ul>
-        <div class="bars">
-          <a class="fa fa-bars" href="#"></a>
-        </div>
-      </div>
-    </nav>
+    <nav id="nav-bar"></nav>
 
     <main>
       <section class="overview-chart">
@@ -266,10 +253,11 @@
         <p
           class="book-synopsis"
           id="mathematical_invetigations_in_the_theory_of_value_and_prices_synopsis"
-        ></p>
-      </div>
-    </main>
-
+          ></p>
+        </div>
+      </main>
+      
+      <script src="/nav/nav.js"></script> 
     <script src="/book_info/economics/elements_of_pure_economics.js"></script>
     <script src="/book_info/economics/mathematical_invetigations_in_the_theory_of_value_and_prices.js"></script>
     <script src="/book_info/economics/the_wealth_of_nations.js"></script>
@@ -279,6 +267,8 @@
     <script src="/book_info/economics/the_general_theory_of_employment_interest_and_money.js"></script>
     <script src="app.js"></script>
 
+     
+    
     <footer>
       <div class="footer">
         <h1>footer</h1>

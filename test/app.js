@@ -1,5 +1,16 @@
 {
-  let x = "3.42724";
+  let test = document.getElementById("test");
+  let node = document.createElement("li");
+  let list = document.getElementById("nav-links");
 
-  document.getElementById("test").textContent = x.substring("0");
+  test.onmouseover = function () {
+    console.log(node);
+    node.appendChild(document.createTextNode("new"));
+
+    list.appendChild(node);
+  
+    test.onclick = function () {
+      list.removeChild(node);
+    };
+  };
 }

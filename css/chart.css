@@ -50,6 +50,10 @@
     0 8px 10px -6px rgb(0 0 0 / 0.1);
 }
 
+p {
+  font-size: 1.25rem;
+}
+
 /* book set overview info */
 
 .overview-chart {
@@ -69,8 +73,6 @@
 .overview-text {
   max-width: 900px;
   padding: 2rem;
-  text-align: justify;
-  hyphens: auto;
   margin: 0 auto;
 }
 
@@ -87,13 +89,9 @@
   /* width: 100vw; */
 }
 
-.buy-links {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-}
-
 .book-info {
   text-align: center;
+  margin-top: 2rem;
 }
 
 .book-subtitle {
@@ -104,9 +102,10 @@
   font-size: 1rem;
 }
 
-.container p {
-  hyphens: auto;
-  text-align: justify;
+.buy-links {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  font-size: 2rem;
 }
 
 /* dynamic layout */
@@ -118,6 +117,10 @@
 }
 
 @media screen and (min-width: 768px) {
+  .book-info {
+    margin-top: 0rem;
+  }
+
   .card {
     grid-template-columns: 1fr 1fr;
     margin-top: 4rem;
