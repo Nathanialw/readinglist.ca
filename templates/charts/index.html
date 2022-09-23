@@ -12,13 +12,17 @@
     <!-- index styles -->
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="/css/chart.css" />
-    <link rel="stylesheet" href="/nav/style.css" />
+    <link rel="stylesheet" href="/js/nav/style.css" />
+    <link rel="stylesheet" href="/js/footer/style.css" />
     <link rel="stylesheet" href="./style.css" />
   </head>
+
   <body>
     <!-- navigation bar at the top -->
     <nav id="nav-bar"></nav>
+    <script src="/nav/nav.js"></script>
 
+    <!-- main body  -->
     <main>
       <section class="overview-chart">
         <h2>chart name</h2>
@@ -48,13 +52,9 @@
       </div>
     </main>
 
-    <script src="/nav/nav.js"></script>
     <script src="./app.js"></script>
 
-    <footer>
-      <div class="footer">
-        <h1>footer</h1>
-      </div>
-    </footer>
+    <footer id="footer"></footer>
+    <script src="/js/footer/footer.js"></script>
   </body>
 </html>

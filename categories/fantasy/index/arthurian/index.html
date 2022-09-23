@@ -10,13 +10,16 @@
     <!-- index styles -->
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="/css/chart.css" />
-    <link rel="stylesheet" href="/nav/style.css" />
+    <link rel="stylesheet" href="/js/nav/style.css" />
+    <link rel="stylesheet" href="/js/footer/style.css" />
     <link rel="stylesheet" href="./style.css" />
     <!-- <link rel="stylesheet" href="./style.css" /> -->
   </head>
   <body>
     <!-- navigation bar at the top -->
     <nav id="nav-bar"></nav>
+
+    <script src="/js/nav/nav.js"></script>
     <!-- books -->
     <main>
       <section class="overview-chart">
@@ -432,8 +435,6 @@
       </div>
     </main>
 
-    <script src="/nav/nav.js"></script>
-
     <script src="/book_info/fantasy/arthurian/castleview.js"></script>
     <script src="/book_info/fantasy/arthurian/enemy_of_god.js"></script>
     <script src="/book_info/fantasy/arthurian/excalibur.js"></script>
@@ -450,10 +451,7 @@
     <script src="/book_info/fantasy/arthurian/the_winter_king.js"></script>
 
     <script src="app.js"></script>
-    <footer>
-      <div class="footer">
-        <h3>footer</h3>
-      </div>
-    </footer>
+    <footer id="footer"></footer>
+    <script src="/js/footer/footer.js"></script>
   </body>
 </html>

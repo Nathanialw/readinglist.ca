@@ -264,6 +264,7 @@ ul {
 /* title  */
 
 .title {
+  padding-top: 2rem;
   text-align: center;
 }
 
@@ -272,10 +273,10 @@ ul {
   width: 7rem;
   height: 0.25rem;
   margin: 0 auto;
+  margin-bottom: 1rem;
 }
 
 /* custom styles */
-
 
 /*  hero image */
 
@@ -302,24 +303,25 @@ main {
   max-width: 1170px;
   background: var(--white);
   margin: 0 auto;
-  min-height: calc(100vh - 75px - 112px);
+  min-height: calc(100vh - 78px - 125px);
 }
 
 /* links to charts */
 
 .links-container {
-  display: flex;
-  flex-direction: column;
-  padding: 2rem 0;
   text-align: center;
 }
 
 .chart-links {
   flex-direction: column;
   display: flex;
+  margin: 0;
+  padding: 0;
 }
 
-.chart-links li {
+.chart-links a {
+  transition: var(--transition);
+  display: block;
   font-size: 2rem;
   text-transform: capitalize;
 }
@@ -348,18 +350,32 @@ main {
   text-shadow: 1px 1px var(--white);
   font-weight: bold;
 }
-/* footer */
 
-footer {
-  bottom: 0;
-  background: var(--primary-300);
-  height: 125px;
+/* main links */
+
+.main-links {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
-.footer {
-  max-width: 1170px;
+.info-card {
+}
+
+.main-info {
+}
+
+.card-img {
+  width: 80vw;
+}
+
+.info-card p {
   margin: 0 auto;
+  padding: 3rem 0;
 }
+
+/* footer */
 
 /*////////////////////
 
@@ -368,14 +384,14 @@ larger screen
 //////////////////////*/
 
 @media screen and (min-width: 768px) {
- 
   a:focus {
     /* color: var(--black); */
     /* background: var(--primary-300); */
   }
 
   .chart-links {
-    grid-template-columns: 1fr 1fr;
+    display: grid;
+    grid-template-columns: auto auto;
   }
 
   .chart-links-misc {
@@ -393,6 +409,34 @@ larger screen
     text-align: center;
     left: 5%;
     top: 10%;
+  }
+
+  .main-links {
+    /* width: 80vw; */
+  }
+
+  .main-card {
+    padding: 1rem;
+    background: var(--grey--400);
+    max-width: var(--max-width);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .card-info {
+    padding: 2rem;
+    background: var(--grey--300);
+    /* min-width: 400px; */
+    width: 400px;
+  }
+
+  .card-img {
+    padding: 1rem;
+    justify-self: center;
+    max-width: 500px;
+  }
+
+  .info-card p {
   }
 }
 

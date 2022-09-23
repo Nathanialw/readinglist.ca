@@ -8,13 +8,15 @@
     <!-- icons -->
     <link rel="stylesheet" href="/assets/icons/css/all.css" />
     <!-- index styles -->
-    <link rel="stylesheet" href="/nav/style.css" />
+    <link rel="stylesheet" href="/js/footer/style.css" />
+    <link rel="stylesheet" href="/js/nav/style.css" />
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
     <!-- navigation bar at the top -->
 
     <nav id="nav-bar"></nav>
+    <script src="/js/nav/nav.js"></script>
 
     <article class="hero-center">
       <section>
@@ -30,7 +32,9 @@
 
     <main>
       <!-- quick links to charts or maybe to themees with multiple charts -->
-      <section class="links-container">
+      <article class="links-container">
+        <h1 class="title">quick links</h1>
+        <div class="title-underline"></div>
         <ul class="chart-links">
           <li><a href="./categories/acedemic/index.html">acedemic</a></li>
           <li><a href="/categories/authors/index.html">authors</a></li>
@@ -54,11 +58,11 @@
           <li><a href="/categories/misc/index.html">misc</a></li>
           <li><a href="/categories/schizo/index.html">schizo</a></li>
         </ul>
-      </section>
+      </article>
 
       <!-- shows a random reading list -->
 
-      <div class="random-chart-list">
+      <article class="random-chart-list">
         <div class="title">
           <h1>featured chart</h1>
         </div>
@@ -68,15 +72,45 @@
           src="./assets/images/charts/Classical/Bronze Age.jpg"
           alt="bronze age"
         />
-      </div>
+      </article>
+
+      <article class="main-links-container">
+        <!-- section title -->
+        <h1 class="title">genre overview</h1>
+        <div class="title-underline"></div>
+
+        <!-- main genre links -->
+        <ul class="main-links">
+          <li>
+            <a href="./categories/acedemic/index.html" class="main-card">
+              <img
+                src="/assets/images/books/fiction/fantasy/arthurian/taliesin.jpg"
+                class="img card-img"
+              />
+              <div class="card-info">
+                <h3>acedemic</h3>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                  Repellat architecto eos sapiente ipsa suscipit molestiae, ab
+                  aliquid aspernatur dignissimos? Exercitationem, cumque
+                  blanditiis delectus doloremque quo dolor saepe. Libero,
+                  necessitatibus vel?
+                </p>
+              </div>
+            </a>
+          </li>
+        </ul>
+
+        <!-- misc links -->
+        <ul class="main-links main-links-misc">
+          <li><a href="/categories/Top lists/index.html">Top lists</a></li>
+          <li><a href="/categories/misc/index.html">misc</a></li>
+          <li><a href="/categories/schizo/index.html">schizo</a></li>
+        </ul>
+      </article>
     </main>
 
-    <script src="/nav/nav.js"></script>
-
-    <footer>
-      <div class="footer">
-        <h1>footer</h1>
-      </div>
-    </footer>
+    <footer id="footer"></footer>
+    <script src="/js/footer/footer.js"></script>
   </body>
 </html>
