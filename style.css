@@ -126,9 +126,9 @@ small,
 a {
   text-decoration: none;
 }
-
+/* 
 a:active {
-}
+} */
 
 a:visited {
   color: var(--primary-500);
@@ -360,22 +360,43 @@ main {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: space-around;
   text-align: center;
 }
 
-.info-card {
+.main-card {
+  padding: 1rem;
+  margin: 1.2rem 0;
+  width: 85vw;
+  background: var(--primary-100);
+  border-radius: var(--borderRadius);
+  transition: var(--transition);
+  box-shadow: var(--shadow-1);
+  display: flex;
+  flex-direction: column;
 }
 
-.main-info {
+.main-card:hover {
+  transform: scale(1.02);
+  background: var(--grey--200);
+  box-shadow: var(--shadow-3);
 }
 
 .card-img {
-  width: 80vw;
+  padding-top: 2rem;
+  border-radius: var(--borderRadius);
+  margin: 0 auto;
+  width: 70vw;
+}
+
+.card-info h3 {
+  padding-top: 2rem;
 }
 
 .info-card p {
-  margin: 0 auto;
-  padding: 3rem 0;
+  /* padding: 3rem 0; */
+  /* margin: 0 auto; */
+  width: 70vw;
 }
 
 /* footer */
@@ -387,16 +408,6 @@ larger screen
 //////////////////////*/
 
 @media screen and (min-width: 768px) {
-  a:focus {
-    /* color: var(--black); */
-    /* background: var(--primary-300); */
-  }
-
-  .chart-links {
-    display: grid;
-    grid-template-columns: auto auto;
-  }
-
   .chart-links-misc {
     margin-top: 3rem;
     grid-template-columns: 1fr 1fr 1fr;
@@ -414,32 +425,44 @@ larger screen
     top: 10%;
   }
 
-  .main-links {
-    /* width: 80vw; */
-  }
-
   .main-card {
-    padding: 1rem;
-    background: var(--grey--400);
+    padding: 0;
+    width: 85vw;
     max-width: var(--max-width);
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: center;
   }
 
   .card-info {
-    padding: 2rem;
-    background: var(--grey--300);
-    /* min-width: 400px; */
-    width: 400px;
+    padding: 0 2rem;
   }
 
   .card-img {
-    padding: 1rem;
-    justify-self: center;
-    max-width: 500px;
+    /* grid-area: b; */
+    padding: 0.5rem 0;
+    width: 40vw;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .main-links {
+    flex-flow: row wrap;
+    gap: 1rem;
   }
 
-  .info-card p {
+  .main-card {
+    height: 800px;
+    max-width: 350px;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .card-img {
+    padding: 1rem 0;
+    width: 90%;
   }
 }
 

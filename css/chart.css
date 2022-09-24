@@ -112,6 +112,23 @@ p {
   font-size: 2rem;
 }
 
+.buy-links a {
+  transition: var(--transition);
+  background-color: var(--primary-100);
+  border-radius: 50%;
+  padding: 0.75rem;
+}
+
+.buy-links:visited {
+  color: var(--primary-500);
+}
+
+.buy-links a:hover {
+  transform: scale(1.5);
+  background: var(--white);
+  color: var(--primary-500);
+}
+
 /* dynamic layout */
 @media screen and (max-width: 768px) {
   .book-img {
