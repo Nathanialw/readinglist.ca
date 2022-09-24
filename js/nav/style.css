@@ -39,11 +39,25 @@ nav {
 .nav-links {
   height: 0;
   overflow: hidden;
-  text-transform: capitalize;
   transition: var(--transition);
-  margin: 0;
-  padding: 0;
   background: var(--white);
+}
+
+.nav-links a {
+  text-transform: capitalize;
+  letter-spacing: var(--letterSpacing);
+  font-weight: 600;
+  transition: var(--transition);
+  display: block;
+  padding: 0 1rem;
+  font-size: 2.75rem;
+}
+
+.nav-links a:hover {
+  padding-left: 1.5rem;
+  padding-right: 2rem;
+  background: var(--primary-500);
+  color: var(--white);
 }
 
 .show-links {
@@ -66,27 +80,7 @@ nav {
 
   .nav-links {
     align-self: stretch;
-    text-transform: capitalize;
     display: flex;
-    align-items: center;
     height: auto;
-  }
-
-  .nav-links a {
-    align-self: stretch;
-    height: 100%;
-    color: var(--primary-500);
-    letter-spacing: var(--letterSpacing);
-    font-weight: 600;
-    transition: var(--transition);
-    display: block;
-    padding: 0 1rem;
-    font-size: 2.75rem;
-  }
-
-  .nav-links a:hover {
-    padding-right: 2rem;
-    background: var(--primary-500);
-    color: var(--white);
   }
 }

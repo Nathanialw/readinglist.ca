@@ -127,6 +127,13 @@ a {
   text-decoration: none;
 }
 
+a:active {
+}
+
+a:visited {
+  color: var(--primary-500);
+}
+
 ul {
   list-style-type: none;
   padding: 0;
