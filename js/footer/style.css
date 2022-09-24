@@ -30,5 +30,5 @@ footer {
 .social-icons a:hover {
   color: var(--white);
   background: var(--primary-500);
-  padding-top: 2.8rem;
+  padding-top: 2.7rem;
 }
