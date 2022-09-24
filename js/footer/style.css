@@ -18,16 +18,17 @@ footer {
 }
 
 .social-icons a {
-  color: var(--white);
   border-radius: 50%;
   font-size: 2rem;
-  padding: 1rem;
-  margin: 0;
+  padding: 0.3rem;
+  margin: 0 1rem;
   transition: var(--transition);
   cursor: pointer;
+  background: var(--white);
 }
 
 .social-icons a:hover {
-  color: var(--primary-500);
-  background: var(--white);
+  color: var(--white);
+  background: var(--primary-500);
+  padding-top: 2.8rem;
 }
