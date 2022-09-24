@@ -12,6 +12,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 77px;
 }
 
 .logo {
@@ -29,6 +30,8 @@ nav {
   color: var(--primary-500);
   font-size: 3.5rem;
   transition: var(--transition);
+  height: 100%;
+  aspect-ratio: 1;
 }
 
 .bars:hover {
