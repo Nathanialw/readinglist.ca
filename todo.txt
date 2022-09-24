@@ -28,7 +28,6 @@ TODO:
 
 	WEBSITE-DESIGN:
 		
-		-add footer and navbar to a js file
 		-finish main landing page
 		-create a tempate for a category page
 		

@@ -334,9 +334,6 @@ main {
 
 .chart-links a:hover {
   color: var(--white);
-}
-
-.chart-links li:hover {
   background: var(--primary-500);
 }
 
