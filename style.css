@@ -339,19 +339,13 @@ main {
 
 /* random book chart */
 
-.title h1 {
-  padding-top: 1rem;
+.title {
+  padding-top: 3rem;
+  letter-spacing: var(--letterSpacing);
 }
 
-.random-chart-list {
-  background: var(--primary-100);
-  /* position: absolute; */
-  /* left: 0; */
-}
-
-.random-chart-list h1 {
-  text-shadow: 1px 1px var(--white);
-  font-weight: bold;
+.title-underline {
+  margin-bottom: 2rem;
 }
 
 /* main links */
@@ -411,18 +405,24 @@ larger screen
   .chart-links-misc {
     margin-top: 3rem;
     grid-template-columns: 1fr 1fr 1fr;
+    padding-bottom: 5rem;
+  }
+
+  .chart-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
 
   .hero {
+    color: var(--white);
     text-shadow: 3px 3px #0f172a;
     display: block;
-    color: var(--white);
     position: absolute;
-    width: 35vw;
-    max-width: 300px;
-    text-align: center;
     left: 5%;
     top: 10%;
+    text-align: center;
+    width: 35vw;
+    max-width: 300px;
   }
 
   .main-card {
