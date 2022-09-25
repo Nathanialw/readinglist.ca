@@ -316,18 +316,24 @@ ul {
 
 /* links to charts */
 
-.links-container {
-  text-align: center;
-}
-
 .chart-links {
   display: flex;
-  flex-direction: column;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.chart-links li {
+  flex-grow: 1;
+  flex-shrink: 0;
 }
 
 .chart-links a {
+  text-align: center;
   display: block;
   transition: var(--transition);
+  min-width: 300px;
+  max-width: 600px;
+  margin: 0 auto;
   font-size: 2rem;
   text-transform: capitalize;
 }
@@ -335,6 +341,10 @@ ul {
 .chart-links a:hover {
   color: var(--white);
   background: var(--primary-500);
+}
+
+.chart-links-misc {
+  margin-top: 2rem;
 }
 
 /* random book chart */
@@ -402,17 +412,6 @@ larger screen
 //////////////////////*/
 
 @media screen and (min-width: 768px) {
-  .chart-links-misc {
-    margin-top: 3rem;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding-bottom: 5rem;
-  }
-
-  .chart-links {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-  }
-
   .hero {
     color: var(--white);
     text-shadow: 3px 3px #0f172a;
@@ -463,16 +462,5 @@ larger screen
     padding: 1rem 0;
     max-width: 90%;
     max-height: 47%;
-  }
-}
-
-@media screen and (min-width: 1170px) {
-  .chart-links {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-
-  .chart-links-misc {
-    margin-top: 3rem;
-    grid-template-columns: 1fr 1fr 1fr;
   }
 }
