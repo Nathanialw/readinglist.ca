@@ -307,7 +307,7 @@ ul {
 
 /* main area  */
 
-main {
+.main-container {
   max-width: var(--max-width);
   background: var(--white);
   margin: 0 auto;
@@ -461,7 +461,8 @@ larger screen
 
   .card-img {
     padding: 1rem 0;
-    width: 90%;
+    max-width: 90%;
+    max-height: 47%;
   }
 }
 

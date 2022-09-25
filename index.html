@@ -17,100 +17,166 @@
     <header class="nav-center" id="nav-bar"></header>
     <script src="/js/nav/nav.js"></script>
 
-    <!-- hero image -->
-    <article class="hero-center">
-      <section>
-        <h1 class="hero">Discover the pleasure of literature</h1>
+    <article class="main-container">
+      <!-- hero image -->
+      <article class="hero-center">
+        <section>
+          <h1 class="hero">Discover the pleasure of literature</h1>
+          <img
+            class="img hero-img"
+            src="./assets/images/layout/hero-img.jpg"
+            alt=""
+          />
+        </section>
+      </article>
+
+      <!-- quick links to charts or maybe to themees with multiple charts -->
+      <section class="links-container">
+        <header>
+          <h1 class="title title-header">quick links</h1>
+          <div class="title-underline"></div>
+        </header>
+        <nav>
+          <ul class="chart-links">
+            <li><a href="./categories/acedemic/index.html">acedemic</a></li>
+            <li><a href="/categories/authors/index.html">authors</a></li>
+            <li><a href="/categories/classical/index.html">classical</a></li>
+            <li><a href="/categories/history/index.html">history</a></li>
+            <li><a href="/categories/horror/index.html">horror</a></li>
+            <li>
+              <a href="/categories/ideological/index.html">ideological</a>
+            </li>
+            <li><a href="/categories/literature/index.html">literature</a></li>
+            <li>
+              <a href="/categories/national & ethnic/index.html"
+                >national & ethnic</a
+              >
+            </li>
+            <li>
+              <a href="/categories/non-english/index.html">non-english</a>
+            </li>
+            <li><a href="/categories/philosophy/index.html">philosophy</a></li>
+            <li><a href="/categories/religion/index.html">religion</a></li>
+            <li><a href="/categories/fantasy/index.html">fantasy</a></li>
+          </ul>
+          <ul class="chart-links chart-links-misc">
+            <li><a href="/categories/Top lists/index.html">Top lists</a></li>
+            <li><a href="/categories/misc/index.html">misc</a></li>
+            <li><a href="/categories/schizo/index.html">schizo</a></li>
+          </ul>
+        </nav>
+      </section>
+
+      <hr />
+      <!-- shows a random reading list -->
+
+      <section class="random-chart">
+        <header class="title title-header">
+          <h1>featured</h1>
+        </header>
+        <div class="title-underline"></div>
+
         <img
-          class="img hero-img"
-          src="./assets/images/layout/hero-img.jpg"
-          alt=""
+          class="img"
+          src="./assets/images/charts/Classical/Bronze Age.jpg"
+          alt="bronze age"
         />
       </section>
-    </article>
-    <section></section>
 
-    <!-- quick links to charts or maybe to themees with multiple charts -->
-    <section class="links-container">
-      <header>
-        <h1 class="title title-header">quick links</h1>
-        <div class="title-underline"></div>
-      </header>
-      <nav>
-        <ul class="chart-links">
-          <li><a href="./categories/acedemic/index.html">acedemic</a></li>
-          <li><a href="/categories/authors/index.html">authors</a></li>
-          <li><a href="/categories/classical/index.html">classical</a></li>
-          <li><a href="/categories/history/index.html">history</a></li>
-          <li><a href="/categories/horror/index.html">horror</a></li>
-          <li><a href="/categories/ideological/index.html">ideological</a></li>
-          <li><a href="/categories/literature/index.html">literature</a></li>
+      <hr />
+
+      <main class="main-links-container">
+        <!-- section title -->
+        <header>
+          <h1 class="title title-header">genre overview</h1>
+          <div class="title-underline"></div>
+        </header>
+
+        <!-- main genre links -->
+        <ul class="main-links">
+          <!-- link -->
           <li>
-            <a href="/categories/national & ethnic/index.html"
-              >national & ethnic</a
-            >
+            <a href="./categories/acedemic/index.html" class="main-card">
+              <img
+                src="/assets/images/layout/academic-stock-450.jpg"
+                class="img card-img"
+              />
+              <section class="card-info">
+                <h3>acedemic</h3>
+                <div class="title-underline"></div>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At,
+                  quos explicabo, sit suscipit fugit iusto, eveniet labore
+                  nostrum esse quam ratione tempora quidem voluptates molestias
+                  similique cupiditate iste quas ducimus.
+                </p>
+              </section>
+            </a>
           </li>
-          <li><a href="/categories/non-english/index.html">non-english</a></li>
-          <li><a href="/categories/philosophy/index.html">philosophy</a></li>
-          <li><a href="/categories/religion/index.html">religion</a></li>
-          <li><a href="/categories/fantasy/index.html">fantasy</a></li>
+
+          <!-- link -->
+          <li>
+            <a href="./categories/authors/index.html" class="main-card">
+              <img
+                src="/assets/images/layout/authors-stock-450.jpg"
+                class="img card-img"
+              />
+              <section class="card-info">
+                <h3>authors</h3>
+                <div class="title-underline"></div>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At,
+                  quos explicabo, sit suscipit fugit iusto, eveniet labore
+                  nostrum esse quam ratione tempora quidem voluptates molestias
+                  similique cupiditate iste quas ducimus.
+                </p>
+              </section>
+            </a>
+          </li>
+          <!-- link -->
+          <li>
+            <a href="./categories/classical/index.html" class="main-card">
+              <img
+                src="/assets/images/layout/classical-stock-450.jpg"
+                class="img card-img"
+              />
+              <section class="card-info">
+                <h3>classical</h3>
+                <div class="title-underline"></div>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At,
+                  quos explicabo, sit suscipit fugit iusto, eveniet labore
+                  nostrum esse quam ratione tempora quidem voluptates molestias
+                  similique cupiditate iste quas ducimus.
+                </p>
+              </section>
+            </a>
+          </li>
+          <!-- link -->
+          <li>
+            <a href="./categories/history/index.html" class="main-card">
+              <img
+                src="/assets/images/layout/history-stock-450.jpg"
+                class="img card-img"
+              />
+              <section class="card-info">
+                <h3>history</h3>
+                <div class="title-underline"></div>
+                <p>
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At,
+                  quos explicabo, sit suscipit fugit iusto, eveniet labore
+                  nostrum esse quam ratione tempora quidem voluptates molestias
+                  similique cupiditate iste quas ducimus.
+                </p>
+              </section>
+            </a>
+          </li>
         </ul>
-        <ul class="chart-links chart-links-misc">
-          <li><a href="/categories/Top lists/index.html">Top lists</a></li>
-          <li><a href="/categories/misc/index.html">misc</a></li>
-          <li><a href="/categories/schizo/index.html">schizo</a></li>
-        </ul>
-      </nav>
-    </section>
 
-    <hr />
-    <!-- shows a random reading list -->
-
-    <section class="random-chart">
-      <header class="title title-header">
-        <h1>featured</h1>
-      </header>
-      <div class="title-underline"></div>
-
-      <img
-        class="img"
-        src="./assets/images/charts/Classical/Bronze Age.jpg"
-        alt="bronze age"
-      />
-    </section>
-
-    <hr />
-
-    <main class="main-links-container">
-      <!-- section title -->
-      <header>
-        <h1 class="title title-header">genre overview</h1>
-        <div class="title-underline"></div>
-      </header>
-
-      <!-- main genre links -->
-      <ul class="main-links">
-        <!-- link -->
-        <li>
-          <a href="./categories/acedemic/index.html" class="main-card">
-            <img
-              src="/assets/images/stock/academic-stock.jpg"
-              class="img card-img"
-            />
-            <section class="card-info">
-              <h3>acedemic</h3>
-              <div class="title-underline"></div>
-              <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. At, quos explicabo, sit suscipit fugit iusto, eveniet labore nostrum esse quam ratione tempora quidem voluptates molestias similique cupiditate iste quas ducimus.
-              </p>
-            </section>
-          </a>
-        </li>
-      </ul>
-
-      <!-- misc links -->
-      <ul class="main-links main-links-misc"></ul>
-    </main>
+        <!-- misc links -->
+        <ul class="main-links main-links-misc"></ul>
+      </main>
+    </article>
 
     <footer id="footer"></footer>
     <script src="/js/footer/footer.js"></script>
