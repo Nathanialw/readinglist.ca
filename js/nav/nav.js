@@ -1,6 +1,18 @@
 {
   const nav =
-    "<div class='nav-center'><div class='navbar'><a href='/index.html'><h4 class='logo'>logo</h4></a><button type='button' class='bars' id='bars'><i class='fa fa-bars'></i></button></div><ul class='nav-links' id='nav-links'><li><a href='/index.html'>home</a></li><li><a href='/about.html'>about</a></li><li><a href='/contact.html'>contact</a></li></ul></div>";
+    "<div class='navbar'>\
+      <a href='/index.html'><h4 class='logo'>logo</h4></a\
+      ><button type='button' class='bars' id='bars'>\
+        <i class='fa fa-bars'></i>\
+      </button>\
+    </div>\
+    <nav>\
+      <ul class='nav-links' id='nav-links'>\
+        <li><a href='/index.html'>home</a></li>\
+        <li><a href='/about.html'>about</a></li>\
+        <li><a href='/contact.html'>contact</a></li>\
+      </ul>\
+    </nav>";
 
   document.getElementById("nav-bar").insertAdjacentHTML("beforeend", nav);
 

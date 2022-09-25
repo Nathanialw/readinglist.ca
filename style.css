@@ -361,7 +361,7 @@ main {
 .main-card {
   padding: 1rem;
   margin: 1.2rem 0;
-  width: 85vw;
+  width: 80vw;
   background: var(--primary-100);
   border-radius: var(--borderRadius);
   transition: var(--transition);
@@ -377,10 +377,10 @@ main {
 }
 
 .card-img {
-  padding-top: 2rem;
+  padding: 0;
   border-radius: var(--borderRadius);
   margin: 0 auto;
-  width: 70vw;
+  max-width: 75vw;
 }
 
 .card-info h3 {
@@ -439,7 +439,6 @@ larger screen
   }
 
   .card-img {
-    /* grid-area: b; */
     padding: 0.5rem 0;
     width: 40vw;
   }
@@ -452,7 +451,7 @@ larger screen
   }
 
   .main-card {
-    height: 800px;
+    height: 580px;
     max-width: 350px;
     padding: 0;
     display: flex;
