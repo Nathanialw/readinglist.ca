@@ -20,8 +20,8 @@ html {
   --primary-100: hsl(244, 100%, 94%);
   --primary-200: hsl(243, 100%, 87%);
   --primary-300: hsl(243, 100%, 81%);
-  --primary-400: #837dff;
-  --primary-500: hsl(243, 100%, 68%);
+  --primary-400: rgb(131, 125, 255);
+  --primary-500: rgb(100, 92, 255);
   --primary-600: #504acc;
   --primary-700: #3c3799;
   --primary-800: #282566;
@@ -289,20 +289,54 @@ ul {
 /*  hero image */
 
 .hero-center {
-  position: relative;
-  max-width: var(--max-width);
-  margin: 0 auto;
-  background: var(--primary-400);
+  background: url(/assets/images/layout/hero-img.jpg) center/cover no-repeat;
 }
 
-.hero-img {
-  opacity: 0.7;
-  object-fit: cover;
+.hero-overlay {
+  height: 600px;
+  background: rgba(131, 125, 255, 0.3);
 }
 
 .hero {
-  display: none;
+  opacity: 0;
   transition: var(--transition);
+  transform: translateY(-100%);
+}
+
+.hero-explore {
+  position: relative;
+  height: 300px;
+  width: 300px;
+  top: 20%;
+  left: 5%;
+  transition: var(--transition);
+  text-align: center;
+}
+
+.explore-btn {
+  position: absolute;
+  display: flex;
+  place-content: center;
+  align-items: center;
+  left: 10%;
+  bottom: 0px;
+  width: 80%;
+  height: 50px;
+  border: 2px solid var(--primary-500);
+  background: var(--white);
+  font-size: 1.5rem;
+  transition: var(--transition);
+  letter-spacing: 3px;
+  font-weight: bold;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.explore-btn:hover {
+  opacity: 0.85;
+  color: var(--white);
+  background: var(--primary-500);
+  border: 2px solid var(--white);
 }
 
 /* main area  */
@@ -410,16 +444,17 @@ larger screen
 //////////////////////*/
 
 @media screen and (min-width: 768px) {
+  .hero-explore {
+    height: 250px;
+  }
+
   .hero {
     color: var(--white);
     text-shadow: 3px 3px #0f172a;
     display: block;
-    position: absolute;
-    left: 5%;
-    top: 10%;
-    text-align: center;
-    width: 35vw;
     max-width: 300px;
+    opacity: 1;
+    transform: translateY(0%);
   }
 
   .main-card {

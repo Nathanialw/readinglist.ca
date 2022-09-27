@@ -20,13 +20,11 @@
     <article class="main-container">
       <!-- hero image -->
       <article class="hero-center">
-        <section>
-          <h1 class="hero">Discover the pleasure of literature</h1>
-          <img
-            class="img hero-img"
-            src="./assets/images/layout/hero-img.jpg"
-            alt=""
-          />
+        <section class="hero-overlay">
+          <section class="hero-explore">
+            <h1 class="hero">Discover the pleasure of literature</h1>
+            <a href="#main-links" class="explore-btn scroll-link">explore</a>
+          </section>
         </section>
       </article>
 
@@ -83,7 +81,7 @@
 
       <hr />
 
-      <main class="main-links-container">
+      <main class="main-links-container" id="main-links">
         <!-- section title -->
         <header>
           <h1 class="title title-header">genre overview</h1>
@@ -348,6 +346,9 @@
             </a>
           </li>
         </ul>
+
+        <!-- js effects -->
+        <script src="app.js"></script>
 
         <!-- misc links -->
         <ul class="main-links main-links-misc"></ul>
