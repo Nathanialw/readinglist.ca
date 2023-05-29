@@ -2,6 +2,9 @@ TODO:
 
 	CHART-DATA:
 
+		categories:
+			add at least one chart to each category
+
 		book-data:
 			the_general_theory_of_employment_interest_and_money: needs new links for pdf and epub
 			the_winter_king: needs new link for epub
