@@ -24,7 +24,7 @@ func main() {
 	r.NotFound = http.StripPrefix("/", http.FileServer(http.Dir("../../public/")))
 
 	server := http.Server{
-		Addr:    "localhost:9001",
+		Addr:    "localhost:12001",
 		Handler: r,
 	}
 
