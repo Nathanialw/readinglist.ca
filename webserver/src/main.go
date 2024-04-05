@@ -52,7 +52,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		Title: "My Page Title",
 		Body:  "Welcome to my dwebsite!",
 	}
-	tmpl, err := template.ParseFiles("../templates/landing.html")
+	tmpl, err := template.ParseFiles("/var/www/nathanial.ca/webserver/templates/landing.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
