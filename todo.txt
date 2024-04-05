@@ -34,3 +34,12 @@ TODO:
 		-finish main landing page
 		-create a tempate for a category page
 		
+
+	##so how do I store these in a DB?
+
+-when you click on a genre -> it takes you to the category page
+//this means when you click on the genre you retrive the data for the category page from the DB
+	-- that is a list of categorys, images and their descriptions
+
+-when you click on a category you retrive a reading list for that category
+	-- that is a list of the books, images, the descriptions and the links

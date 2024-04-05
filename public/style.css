@@ -1,4 +1,4 @@
-@import url(/css/normalize.css);
+@import url(./css/normalize.css);
 
 *,
 ::after,
@@ -289,7 +289,7 @@ ul {
 /*  hero image */
 
 .hero-center {
-  background: url(/assets/images/layout/hero-img.jpg) center/cover no-repeat;
+  background: url(./assets/images/layout/hero-img.jpg) center/cover no-repeat;
 }
 
 .hero-overlay {
