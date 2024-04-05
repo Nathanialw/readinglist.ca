@@ -18,10 +18,10 @@ type PageData struct {
 
 func main() {
 	r := httprouter.New()
-	// r.GET("/goapp", homeHandler)
+	r.GET("/", homeHandler)
 	// r.OPTIONS("/goapp", handleOptions) // Add this line
 
-	r.NotFound = http.StripPrefix("/", http.FileServer(http.Dir("../../public/")))
+	// r.NotFound = http.StripPrefix("/", http.FileServer(http.Dir("../../public/")))
 
 	server := http.Server{
 		Addr:    "localhost:12001",
@@ -52,7 +52,7 @@ func homeHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		Title: "My Page Title",
 		Body:  "Welcome to my dwebsite!",
 	}
-	tmpl, err := template.ParseFiles("../templates/charts.html")
+	tmpl, err := template.ParseFiles("../templates/landing.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
