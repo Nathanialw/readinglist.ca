@@ -20,7 +20,7 @@ type PageData struct {
 func main() {
 	Init()
 	r := httprouter.New()
-	r.NotFound = http.StripPrefix("/", http.FileServer(http.Dir("../../public/")))
+	//r.NotFound = http.StripPrefix("/", http.FileServer(http.Dir("../../public/")))
 	//r.NotFound = http.StripPrefix("/", http.FileServer(http.Dir("/categories/*categoryPath")))
 	r.GET("/", home)
 	r.GET("/contact", contact)
