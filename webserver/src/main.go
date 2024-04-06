@@ -17,11 +17,15 @@ type PageData struct {
 }
 
 func main() {
+	Init()
 	r := httprouter.New()
-	r.GET("/", homeHandler)
-	// r.OPTIONS("/goapp", handleOptions) // Add this line
 
-	// r.NotFound = http.StripPrefix("/", http.FileServer(http.Dir("../../public/")))
+	r.GET("/", home)
+	r.GET("/contact", contact)
+	r.GET("/about", about)
+	r.GET("/category", category)
+
+	r.NotFound = http.StripPrefix("/", http.FileServer(http.Dir("../../public/")))
 
 	server := http.Server{
 		Addr:    "localhost:12001",
@@ -34,25 +38,57 @@ func main() {
 	}
 }
 
-// func handleOptions(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
-// 	w.Header().Set("Access-Control-Allow-Origin", "http://127.0.0.1:5500")
-// 	w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
-// 	w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
-// 	w.WriteHeader(http.StatusNoContent)
-// }
+func generateHTML(w http.ResponseWriter, data interface{}, name string, fn ...string) {
+	var files []string
+	for _, file := range fn {
+		files = append(files, fmt.Sprintf("../templates/%s.html", file))
+	}
+	templates := template.Must(template.ParseFiles(files...))
+	_ = templates.ExecuteTemplate(w, name, data)
 
-func homeHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	// w.Header().Set("Access-Control-Allow-Origin", "http://127.0.0.1:5500")
-	// w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
-	// w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+	//if err != nil {
+	//	http.Error(w, err.Error(), http.StatusInternalServerError)
+	//	return
+	//}
+}
 
+func home(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
+	data, _ := Categories()
+
+	generateHTML(w, data, "landing", "navbar", "footer", "dailylist", "category", "landing")
+}
+
+func contact(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 
 	data := PageData{
 		Title: "My Page Title",
 		Body:  "Welcome to my dwebsite!",
 	}
-	tmpl, err := template.ParseFiles("../templates/landing.html")
+
+	generateHTML(w, data, "contact", "navbar", "footer", "contact")
+}
+
+func about(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
+
+	data := PageData{
+		Title: "My Page Title",
+		Body:  "Welcome to my dwebsite!",
+	}
+
+	generateHTML(w, data, "about", "navbar", "footer", "about")
+}
+
+func category(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
+
+	data := PageData{
+		Title: "My Page Title",
+		Body:  "Welcome to my dwebsite!",
+	}
+	tmpl, err := template.ParseFiles("../templates/category.html")
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -62,12 +98,4 @@ func homeHandler(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
-}
-
-func productHandler(w http.ResponseWriter, r *http.Request) {
-	// Handle requests for individual products here
-}
-
-func usersHandler(w http.ResponseWriter, r *http.Request) {
-	// Handle requests for the user API here
 }

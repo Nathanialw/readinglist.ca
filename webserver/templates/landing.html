@@ -1,3 +1,5 @@
+{{ define "landing" }}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -12,10 +14,13 @@
     <link rel="stylesheet" href="./js/footer/style.css" />
     <link rel="stylesheet" href="./style.css" />
   </head>
+  
   <body>
     <!-- navigation bar at the top -->
-    <header class="nav-center" id="nav-bar"></header>
-    <script src="./js/nav/nav.js"></script>
+    <header class="nav-center" id="nav-bar">
+      {{ template "navbar" . }}
+    </header>
+    
 
     <article class="main-container">
       <!-- hero image -->
@@ -36,21 +41,12 @@
         </header>
         <nav>
           <ul class="chart-links">
-            <li><a href="./categories/acedemic/index.html">acedemic</a></li>
-            <li><a href="./categories/authors/index.html">authors</a></li>
-            <li><a href="./categories/classical/index.html">classical</a></li>
-            <li><a href="./categories/history/index.html">history</a></li>
-            <li><a href="./categories/horror/index.html">horror</a></li>
-            <li><a href="./categories/ideological/index.html">ideological</a></li>
-            <li><a href="./categories/literature/index.html">literature</a></li>
-            <li><a href="./categories/national & ethnic/index.html">national & ethnic</a></li>
-            <li><a href="./categories/non-english/index.html">non-english</a></li>
-            <li><a href="./categories/philosophy/index.html">philosophy</a></li>
-            <li><a href="./categories/religion/index.html">religion</a></li>
-            <li><a href="./categories/fantasy/index.html">fantasy</a></li>
-          </ul>
-          <ul class="chart-links chart-links-misc">
-            <li><a href="./categories/schizo/index.html">schizo</a></li>
+            <!-- loop through and pull from a database -->
+            {{ range . }}
+
+            <li><a href="/{{ .Category }}">{{ .Category }}</a></li>
+            
+            {{ end }}
           </ul>
         </nav>
       </article>
@@ -58,18 +54,7 @@
       <hr />
       <!-- shows a random reading list -->
 
-      <section class="random-chart">
-        <header class="title title-header">
-          <h1>featured</h1>
-        </header>
-        <div class="title-underline"></div>
-
-        <img
-          class="img"
-          src="./assets/images/charts/Classical/Bronze Age.jpg"
-          alt="bronze age"
-        />
-      </section>
+      {{ template "dailylist" . }}
 
       <hr />
 
@@ -82,261 +67,30 @@
 
         <!-- main genre links -->
         <ul class="main-links">
-          <!-- link -->
-          <li>
-            <a href="./categories/acedemic/index.html" class="main-card">
-              <img
-                src="./assets/images/layout/academic-stock-450.jpg"
-                class="img card-img"
-              />
-              <section class="card-info">
-                <h3>acedemic</h3>
-                <div class="title-underline"></div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At,
-                  quos explicabo, sit suscipit fugit iusto, eveniet labore
-                  nostrum esse quam ratione tempora quidem voluptates molestias
-                  similique cupiditate iste quas ducimus. Lorem ipsum dolor sit
-                  amet consectetur adipisicing elit. Eligendi tempora iste
-                  aliquam perspiciatis ipsa blanditiis repellendus, officia vel
-                  ut beatae.
-                </p>
-              </section>
-            </a>
-          </li>
 
-          <!-- link -->
-          <li>
-            <a href="./categories/authors/index.html" class="main-card">
-              <img
-                src="./assets/images/layout/authors-stock-450.jpg"
-                class="img card-img"
-              />
-              <section class="card-info">
-                <h3>authors</h3>
-                <div class="title-underline"></div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At,
-                  quos explicabo, sit suscipit fugit iusto, eveniet labore
-                  nostrum esse quam ratione tempora quidem voluptates molestias
-                  similique cupiditate iste quas ducimus.
-                </p>
-              </section>
-            </a>
-          </li>
-          <!-- link -->
-          <li>
-            <a href="./categories/classical/index.html" class="main-card">
-              <img
-                src="./assets/images/layout/classical-stock-450.jpg"
-                class="img card-img"
-              />
-              <section class="card-info">
-                <h3>classical</h3>
-                <div class="title-underline"></div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At,
-                  quos explicabo, sit suscipit fugit iusto, eveniet labore
-                  nostrum esse quam ratione tempora quidem voluptates molestias
-                  similique cupiditate iste quas ducimus.
-                </p>
-              </section>
-            </a>
-          </li>
-          <!-- link -->
-          <li>
-            <a href="./categories/history/index.html" class="main-card">
-              <img
-                src="./assets/images/layout/history-stock-450.jpg"
-                class="img card-img"
-              />
-              <section class="card-info">
-                <h3>history</h3>
-                <div class="title-underline"></div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At,
-                  quos explicabo, sit suscipit fugit iusto, eveniet labore
-                  nostrum esse quam ratione tempora quidem voluptates molestias
-                  similique cupiditate iste quas ducimus.
-                </p>
-              </section>
-            </a>
-          </li>
-          <!-- link -->
-          <li>
-            <a href="./categories/horror/index.html" class="main-card">
-              <img
-                src="./assets/images/layout/horror-stock-450.jpg"
-                class="img card-img"
-              />
-              <section class="card-info">
-                <h3>horror</h3>
-                <div class="title-underline"></div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At,
-                  quos explicabo, sit suscipit fugit iusto, eveniet labore
-                  nostrum esse quam ratione tempora quidem voluptates molestias
-                  similique cupiditate iste quas ducimus.
-                </p>
-              </section>
-            </a>
-          </li>
-          <!-- link -->
-          <li>
-            <a href="./categories/ideological/index.html" class="main-card">
-              <img
-                src="./assets/images/layout/ideological-450.jpg"
-                class="img card-img"
-              />
-              <section class="card-info">
-                <h3>ideological</h3>
-                <div class="title-underline"></div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At,
-                  quos explicabo, sit suscipit fugit iusto, eveniet labore
-                  nostrum esse quam ratione tempora quidem voluptates molestias
-                  similique cupiditate iste quas ducimus.
-                </p>
-              </section>
-            </a>
-          </li>
-          <!-- link -->
-          <li>
-            <a href="./categories/literature/index.html" class="main-card">
-              <img
-                src="./assets/images/layout/literature-stock-450.png"
-                class="img card-img"
-              />
-              <section class="card-info">
-                <h3>literature</h3>
-                <div class="title-underline"></div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At,
-                  quos explicabo, sit suscipit fugit iusto, eveniet labore
-                  nostrum esse quam ratione tempora quidem voluptates molestias
-                  similique cupiditate iste quas ducimus.
-                </p>
-              </section>
-            </a>
-          </li>
-          <!-- link -->
-          <li>
-            <a
-              href="./categories/national & ethnic/index.html"
-              class="main-card"
-            >
-              <img
-                src="./assets/images/layout/national-&-ethnic-stock-450.jpg"
-                class="img card-img"
-              />
-              <section class="card-info">
-                <h3>national & ethnic</h3>
-                <div class="title-underline"></div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At,
-                  quos explicabo, sit suscipit fugit iusto, eveniet labore
-                  nostrum esse quam ratione tempora quidem voluptates molestias
-                  similique cupiditate iste quas ducimus.
-                </p>
-              </section>
-            </a>
-          </li>
-          <!-- link -->
-          <li>
-            <a href="./categories/non-english/index.html" class="main-card">
-              <img
-                src="./assets/images/layout/non-english-stock-450.png"
-                class="img card-img"
-              />
-              <section class="card-info">
-                <h3>non-english</h3>
-                <div class="title-underline"></div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At,
-                  quos explicabo, sit suscipit fugit iusto, eveniet labore
-                  nostrum esse quam ratione tempora quidem voluptates molestias
-                  similique cupiditate iste quas ducimus.
-                </p>
-              </section>
-            </a>
-          </li>
-          <!-- link -->
-          <li>
-            <a href="./categories/philosophy/index.html" class="main-card">
-              <img
-                src="./assets/images/layout/philosophy.jpg"
-                class="img card-img"
-              />
-              <section class="card-info">
-                <h3>philosophy</h3>
-                <div class="title-underline"></div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At,
-                  quos explicabo, sit suscipit fugit iusto, eveniet labore
-                  nostrum esse quam ratione tempora quidem voluptates molestias
-                  similique cupiditate iste quas ducimus.
-                </p>
-              </section>
-            </a>
-          </li>
-          <!-- link -->
-          <li>
-            <a href="./categories/religion/index.html" class="main-card">
-              <img
-                src="./assets/images/layout/religion-stock.jpg"
-                class="img card-img"
-              />
-              <section class="card-info">
-                <h3>religion</h3>
-                <div class="title-underline"></div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At,
-                  quos explicabo, sit suscipit fugit iusto, eveniet labore
-                  nostrum esse quam ratione tempora quidem voluptates molestias
-                  similique cupiditate iste quas ducimus.
-                </p>
-              </section>
-            </a>
-          </li>
-          <!-- link -->
-          <li>
-            <a href="./categories/fantasy/index.html" class="main-card">
-              <img
-                src="./assets/images/layout/fantasy-atock-450.jpg"
-                class="img card-img"
-              />
-              <section class="card-info">
-                <h3>fantasy</h3>
-                <div class="title-underline"></div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At,
-                  quos explicabo, sit suscipit fugit iusto, eveniet labore
-                  nostrum esse quam ratione tempora quidem voluptates molestias
-                  similique cupiditate iste quas ducimus.
-                </p>
-              </section>
-            </a>
-          </li>
 
-          <!-- link -->
+          <!-- loop through and pull from a database -->
+          {{ range . }}
+          
           <li>
-            <a href="./categories/schizo/index.html" class="main-card">
-              <img
-                src="./assets/images/layout/schizo-stock-450.jpg"
-                class="img card-img"
-              />
-              <section class="card-info">
-                <h3>schizo</h3>
-                <div class="title-underline"></div>
-                <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit. At,
-                  quos explicabo, sit suscipit fugit iusto, eveniet labore
-                  nostrum esse quam ratione tempora quidem voluptates molestias
-                  similique cupiditate iste quas ducimus.
-                </p>
-              </section>
+            <a href="/{{ .Category }}" class="main-card">
+                <img
+                    src="{{ .Image }}"
+                    class="img card-img"
+                />  
+                <section class="card-info">
+                    <h3>{{ .Category }}</h3>
+                    <div class="title-underline"></div>
+                    <p>
+                      {{ .Description }}
+                    </p>
+                </section>
             </a>
-          </li>
+        </li>
+          
+          {{ end }}
+          <!-- link -->
+          
         </ul>
 
         <!-- js effects -->
@@ -347,7 +101,11 @@
       </main>
     </article>
 
-    <footer id="footer"></footer>
-    <script src="./js/footer/footer.js"></script>
+    <footer id="footer">
+      {{ template "footer" . }}
+    </footer>
   </body>
 </html>
+
+
+{{ end }}
