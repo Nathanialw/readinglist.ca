@@ -39,6 +39,17 @@ type Book struct {
 	Link_handmade string
 }
 
+type readinglistbooks struct {
+	reading_list  string
+	Bookuid       int
+	reading_order int
+}
+
+type Reading struct {
+	Reading_list ReadingList
+	Books        []Book
+}
+
 var db *sql.DB
 
 func Init() {
@@ -70,8 +81,8 @@ func Categories() (threads []Category, err error) {
 	return
 }
 
-func ReadingLists() (threads []ReadingList, err error) {
-	rows, err := db.Query("select name, category, image, description from categories")
+func ReadingLists(list string) (threads []ReadingList, err error) {
+	rows, err := db.Query("select name, category, image, description from readinglists where category = ?", list)
 
 	if err != nil {
 		fmt.Printf("%s", err)
@@ -79,32 +90,63 @@ func ReadingLists() (threads []ReadingList, err error) {
 	}
 	for rows.Next() {
 		th := ReadingList{}
-		if err = rows.Scan(&th.name, &th.category, &th.image, &th.description); err != nil {
+		if err = rows.Scan(&th.Name, &th.Category, &th.Image, &th.Description); err != nil {
 			fmt.Printf("%s", err)
 			return
 		}
 		threads = append(threads, th)
-		fmt.Printf("name: %s, category: %s\n", th.name, th.category)
+		fmt.Printf("name: %s, category: %s\n", th.Name, th.Category)
 	}
 	rows.Close()
 	return
 }
 
-func Books() (threads []Book, err error) {
-	rows, err := db.Query("select title, subtitle, author, publish_year, image, synopsis, link_amazon, link_indigo, link_pdf, link_epub, link_handmade from categories")
+func Books(list string) (threads []Book, err error) {
+	//get all the books from a readinglist
+	//use the uid to get the books from the books table
+	bookuids, err := db.Query("select bookuid from readinglistbooks where reading_list = ?", list)
+
+	//get list of uids
+	//use the uids to get the books
+
+	var rows *sql.Rows
+
+	for bookuids.Next() {
+		lst := readinglistbooks{}
+		bookuids.Scan(&lst.Bookuid)
+		fmt.Printf("bookuid: %d\n", lst.Bookuid)
+		rows, err = db.Query("select title, subtitle, author, publish_year, image, synopsis, link_amazon, link_indigo, link_pdf, link_epub, link_handmade from books where uid = ?", lst.Bookuid)
+		if err != nil {
+			fmt.Printf("%s", err)
+		}
+		th := Book{}
+		for rows.Next() {
+			if err = rows.Scan(&th.Title, &th.Subtitle, &th.Author, &th.Publish_year, &th.Image, &th.Synopsis, &th.Link_amazon, &th.Link_indigo, &th.Link_pdf, &th.Link_epub, &th.Link_handmade); err != nil {
+				fmt.Printf("%s", err)
+				return
+			}
+			threads = append(threads, th)
+			fmt.Printf("title: %s, author: %s\n", th.Title, th.Author)
+		}
+	}
+
+	rows.Close()
+	return
+}
+
+func GetReadingList(name string) (threads ReadingList, err error) {
+	rows, err := db.Query("select name, image, description from readinglists where name = ?", name)
 
 	if err != nil {
 		fmt.Printf("%s", err)
 		return
 	}
 	for rows.Next() {
-		th := Book{}
-		if err = rows.Scan(&th.title, &th.subtitle, &th.author, &th.publish_year, &th.image, &th.synopsis, &th.link_amazon, &th.link_indigo, &th.link_pdf, &th.link_epub, &th.link_handmade); err != nil {
+		if err = rows.Scan(&threads.Name, &threads.Image, &threads.Description); err != nil {
 			fmt.Printf("%s", err)
 			return
 		}
-		threads = append(threads, th)
-		fmt.Printf("title: %s, author: %s\n", th.title, th.author)
+		fmt.Printf("name: %s, image: %s\n", threads.Name, threads.Image)
 	}
 	rows.Close()
 	return

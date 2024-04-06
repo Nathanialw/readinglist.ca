@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"html/template"
 	"net/http"
+	"strings"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -19,13 +20,13 @@ type PageData struct {
 func main() {
 	Init()
 	r := httprouter.New()
-
+	r.NotFound = http.StripPrefix("/", http.FileServer(http.Dir("../../public/")))
+	//r.NotFound = http.StripPrefix("/", http.FileServer(http.Dir("/categories/*categoryPath")))
 	r.GET("/", home)
 	r.GET("/contact", contact)
 	r.GET("/about", about)
-	r.GET("/category", category)
-
-	r.NotFound = http.StripPrefix("/", http.FileServer(http.Dir("../../public/")))
+	r.GET("/category/*categoryPath", category)
+	r.GET("/readinglist/*listPath", readinglist)
 
 	server := http.Server{
 		Addr:    "localhost:12001",
@@ -83,19 +84,21 @@ func about(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 func category(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
+	//strip off the end of the url
+	list := strings.TrimPrefix(p.ByName("categoryPath"), "/")
+	fmt.Printf("category: %s\n", list)
+	data, _ := ReadingLists(list)
 
-	data := PageData{
-		Title: "My Page Title",
-		Body:  "Welcome to my dwebsite!",
-	}
-	tmpl, err := template.ParseFiles("../templates/category.html")
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-		return
-	}
+	generateHTML(w, data, "category", "navbar", "footer", "category")
+}
 
-	err = tmpl.Execute(w, data)
-	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
-	}
+func readinglist(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
+	list := strings.TrimPrefix(p.ByName("listPath"), "/")
+	fmt.Printf("readinglist: %s\n", list)
+	var data Reading
+	data.Books, _ = Books(list)
+	data.Reading_list, _ = GetReadingList(list)
+
+	generateHTML(w, data, "readinglist", "navbar", "footer", "readinglist")
 }
