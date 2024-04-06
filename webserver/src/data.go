@@ -22,6 +22,7 @@ type ReadingList struct {
 	Name        string
 	Category    string
 	Image       string
+	Chart       string
 	Description string
 }
 
@@ -135,18 +136,18 @@ func Books(list string) (threads []Book, err error) {
 }
 
 func GetReadingList(name string) (threads ReadingList, err error) {
-	rows, err := db.Query("select name, image, description from readinglists where name = ?", name)
+	rows, err := db.Query("select name, chart, description from readinglists where name = ?", name)
 
 	if err != nil {
 		fmt.Printf("%s", err)
 		return
 	}
 	for rows.Next() {
-		if err = rows.Scan(&threads.Name, &threads.Image, &threads.Description); err != nil {
+		if err = rows.Scan(&threads.Name, &threads.Chart, &threads.Description); err != nil {
 			fmt.Printf("%s", err)
 			return
 		}
-		fmt.Printf("name: %s, image: %s\n", threads.Name, threads.Image)
+		fmt.Printf("name: %s, image: %s\n", threads.Name, threads.Chart)
 	}
 	rows.Close()
 	return

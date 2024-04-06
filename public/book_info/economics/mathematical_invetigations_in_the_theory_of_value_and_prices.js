@@ -11,7 +11,7 @@ const mathematical_invetigations_in_the_theory_of_value_and_prices = {
   link_epub:
     "https://b-ok.cc/book/23087038/8363bd",
   link_amazon:
-    "<a class='fab fa-amazon' href='https://www.amazon.ca/Mathematical-Investigations-Theory-Value-Prices/dp/1614273057/ref=sr_1_1?crid=OJKV622X3CL7&keywords=mathematical+investigation&qid=1663517126&sprefix=mathematical+investigation%2Caps%2C122&sr=8-1",
+    "https://www.amazon.ca/Mathematical-Investigations-Theory-Value-Prices/dp/1614273057/ref=sr_1_1?crid=OJKV622X3CL7&keywords=mathematical+investigation&qid=1663517126&sprefix=mathematical+investigation%2Caps%2C122&sr=8-1",
   link_indigo:
     "https://www.chapters.indigo.ca/en-ca/books/mathematical-investigations-in-the-theory/9781334474644-item.html?ikwid=Mathematical+Investigations+in+the+Theory+of+Value+and+Prices&ikwsec=Home&ikwidx=1#algoliaQueryId=db344091c0c787a0e4af9f6bd5cc9fc0",
   link_handmade: "#",
