@@ -25,19 +25,19 @@
     <!-- books -->
     <main class="main-container">
       <section class="overview-chart">
-        <h2>{{ .Reading_list.Name }}</h2>
+        <h2>{{ .Reading.Reading_list.Name }}</h2>
         <img
-          src="{{ .Reading_list.Chart }}"
-          alt="{{ .Reading_list.Name }} chart"
+          src="{{ .Reading.Reading_list.Chart }}"
+          alt="{{ .Reading.Reading_list.Name }} chart"
           class="img"
         />
         <p class="overview-text">
-            {{ .Reading_list.Description }}            
+            {{ .Reading.Reading_list.Description }}            
         </p>
       </section>
 
       <ul>
-          {{ range .Books }}
+          {{ range .Reading.Books }}
         <li>
           <div class="container">
             <div class="card">

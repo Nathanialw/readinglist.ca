@@ -11,11 +11,11 @@
         <li><a href='/'>home</a></li>
         <li><a href='/about'>about</a></li>
         <li><a href='/contact'>contact</a></li>        
-        {{ if  1 }}
-        <li><a href='/login'>login</a></li>
-        {{ else }}
+        {{ if .Loggedin }}
         <li><a href='/account'>account</a></li>
         <li><a href='/logout'>logout</a></li>
+        {{ else }}
+        <li><a href='/login'>login</a></li>
         {{ end }}
         
     </ul>

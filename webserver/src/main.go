@@ -12,9 +12,15 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-type PageData struct {
-	Title string
-	Body  string
+type User struct {
+}
+
+type UserSession struct {
+	Username    string
+	Loggedin    bool
+	Reading     Reading
+	Category    []Category
+	ReadingList []ReadingList
 }
 
 func main() {
@@ -59,7 +65,10 @@ func generateHTML(w http.ResponseWriter, data interface{}, name string, fn ...st
 
 func home(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
-	data, _ := Categories()
+	var data UserSession
+	data.Category, _ = Categories()
+	data.Username = "Nathan"
+	data.Loggedin = false
 
 	generateHTML(w, data, "landing", "navbar", "footer", "dailylist", "category", "landing")
 }
@@ -67,10 +76,9 @@ func home(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 func contact(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 
-	data := PageData{
-		Title: "My Page Title",
-		Body:  "Welcome to my dwebsite!",
-	}
+	var data UserSession
+	data.Username = "Nathan"
+	data.Loggedin = false
 
 	generateHTML(w, data, "contact", "navbar", "footer", "contact")
 }
@@ -78,10 +86,9 @@ func contact(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 func about(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 
-	data := PageData{
-		Title: "My Page Title",
-		Body:  "Welcome to my dwebsite!",
-	}
+	var data UserSession
+	data.Username = "Nathan"
+	data.Loggedin = false
 
 	generateHTML(w, data, "about", "navbar", "footer", "about")
 }
@@ -89,10 +96,9 @@ func about(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 func login(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 
-	data := PageData{
-		Title: "My Page Title",
-		Body:  "Welcome to my dwebsite!",
-	}
+	var data UserSession
+	data.Username = "Nathan"
+	data.Loggedin = false
 
 	generateHTML(w, data, "login", "navbar", "footer", "login")
 }
@@ -100,10 +106,9 @@ func login(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 func logout(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 
-	data := PageData{
-		Title: "My Page Title",
-		Body:  "Welcome to my dwebsite!",
-	}
+	var data UserSession
+	data.Username = "Nathan"
+	data.Loggedin = false
 
 	generateHTML(w, data, "logout", "navbar", "footer", "logout")
 }
@@ -111,10 +116,9 @@ func logout(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 func account(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 
-	data := PageData{
-		Title: "My Page Title",
-		Body:  "Welcome to my dwebsite!",
-	}
+	var data UserSession
+	data.Username = "Nathan"
+	data.Loggedin = false
 
 	generateHTML(w, data, "account", "navbar", "footer", "account")
 }
@@ -124,7 +128,10 @@ func category(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	//strip off the end of the url
 	list := strings.TrimPrefix(p.ByName("categoryPath"), "/")
 	fmt.Printf("category: %s\n", list)
-	data, _ := ReadingLists(list)
+	var data UserSession
+	data.Username = "Nathan"
+	data.Loggedin = false
+	data.ReadingList, _ = ReadingLists(list)
 
 	generateHTML(w, data, "category", "navbar", "footer", "category")
 }
@@ -133,9 +140,12 @@ func readinglist(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 	list := strings.TrimPrefix(p.ByName("listPath"), "/")
 	fmt.Printf("readinglist: %s\n", list)
-	var data Reading
-	data.Books, _ = Books(list)
-	data.Reading_list, _ = GetReadingList(list)
+	//var data Reading
+	var data UserSession
+	data.Username = "Nathan"
+	data.Loggedin = false
+	data.Reading.Books, _ = Books(list)
+	data.Reading.Reading_list, _ = GetReadingList(list)
 
 	generateHTML(w, data, "readinglist", "navbar", "footer", "readinglist")
 }

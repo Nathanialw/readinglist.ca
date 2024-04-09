@@ -1,7 +1,6 @@
 /* nav bar */
 
 nav {
-  background: var(--white);
 }
 
 .nav-center {
@@ -43,7 +42,6 @@ nav {
   height: 0;
   overflow: hidden;
   transition: var(--transition);
-  background: var(--white);
 }
 
 .nav-links a {
