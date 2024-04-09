@@ -303,6 +303,11 @@ ul {
   transform: translateY(-100%);
 }
 
+.hero-explore h1 {
+  height: 100px;
+  top: 0px;
+}
+
 .hero-explore {
   position: relative;
   height: 300px;

@@ -25,6 +25,10 @@ func main() {
 	r.GET("/", home)
 	r.GET("/contact", contact)
 	r.GET("/about", about)
+	r.GET("/login", login)
+	r.GET("/logout", logout)
+	r.GET("/account", account)
+
 	r.GET("/category/*categoryPath", category)
 	r.GET("/readinglist/*listPath", readinglist)
 
@@ -80,6 +84,39 @@ func about(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	}
 
 	generateHTML(w, data, "about", "navbar", "footer", "about")
+}
+
+func login(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
+
+	data := PageData{
+		Title: "My Page Title",
+		Body:  "Welcome to my dwebsite!",
+	}
+
+	generateHTML(w, data, "login", "navbar", "footer", "login")
+}
+
+func logout(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
+
+	data := PageData{
+		Title: "My Page Title",
+		Body:  "Welcome to my dwebsite!",
+	}
+
+	generateHTML(w, data, "logout", "navbar", "footer", "logout")
+}
+
+func account(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
+
+	data := PageData{
+		Title: "My Page Title",
+		Body:  "Welcome to my dwebsite!",
+	}
+
+	generateHTML(w, data, "account", "navbar", "footer", "account")
 }
 
 func category(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
