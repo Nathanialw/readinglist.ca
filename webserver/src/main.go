@@ -19,7 +19,8 @@ type UserSession struct {
 	Username    string
 	LoggedIn    bool
 	Reading     Reading
-	Category    []Category
+	Category    string
+	Categories  []Category
 	ReadingList []ReadingList
 }
 
@@ -39,6 +40,7 @@ func main() {
 	r.GET("/readinglist/*listPath", readinglist)
 
 	r.POST("/login", login)
+	r.GET("/404", notfound)
 
 	server := http.Server{
 		Addr:    "localhost:12001",
@@ -68,7 +70,7 @@ func generateHTML(w http.ResponseWriter, data interface{}, name string, fn ...st
 func home(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 	var data UserSession
-	data.Category, _ = Categories()
+	data.Categories, _ = Categories()
 	data.Username = "Nathan"
 	data.LoggedIn = false
 
@@ -125,6 +127,16 @@ func account(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	generateHTML(w, data, "account", "navbar", "footer", "account")
 }
 
+func notfound(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
+
+	var data UserSession
+	data.Username = "Nathan"
+	data.LoggedIn = false
+
+	generateHTML(w, data, "notfound", "navbar", "footer", "notfound")
+}
+
 func category(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 	//strip off the end of the url
@@ -133,6 +145,7 @@ func category(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	var data UserSession
 	data.Username = "Nathan"
 	data.LoggedIn = false
+	data.Category = list
 	data.ReadingList, _ = ReadingLists(list)
 
 	generateHTML(w, data, "category", "navbar", "footer", "category")

@@ -125,13 +125,18 @@ small,
 
 a {
   text-decoration: none;
+  color: var(--primary-500);
 }
+
 /* 
 a:active {
-} */
+} 
+*/
 
 a:visited {
-  color: var(--primary-500);
+  opacity: 1; 
+  text-decoration: none;
+  transition: none; 
 }
 
 ul {

@@ -1,3 +1,4 @@
+{{ define "notfound" }}
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,8 +14,9 @@
     <link rel="stylesheet" href="/style.css" />
   </head>
   <body>
-    <header class="nav-centerg" id="nav-bar"></header>
-    <script src="/js/nav/nav.js"></script>
+    <header class="nav-centerg" id="nav-bar">
+        {{ range .ReadingList }}
+    </header>
 
     <main class="main-container">
       <h1
@@ -27,7 +29,7 @@
           text-shadow: 2px 0px black;
         "
       >
-        Page Not Found =(
+        Page Not Found
       </h1>
       <div style="margin-bottom: 7rem" class="title-underline"></div>
       <img
@@ -38,7 +40,9 @@
       />
     </main>
 
-    <footer id="footer"></footer>
-    <script src="/js/footer/footer.js"></script>
+    <footer id="footer">
+        {{ template "footer" . }}
+    </footer>
   </body>
 </html>
+{{ end }}
