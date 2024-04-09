@@ -83,7 +83,7 @@ func Categories() (threads []Category, err error) {
 }
 
 func ReadingLists(list string) (threads []ReadingList, err error) {
-	rows, err := db.Query("select name, category, image, description from readinglists where category = ?", list)
+	rows, err := db.Query("select name, category, image, description from readinglists where category = ? and active = 1", list)
 
 	if err != nil {
 		fmt.Printf("%s", err)
