@@ -42,19 +42,15 @@
           <ul class="chart-links">
             <!-- loop through and pull from a database -->
             {{ range .Categories }}
-
             <li><a href="/category/{{ .Category }}">{{ .Category }}</a></li>
-            
             {{ end }}
           </ul>
         </nav>
       </article>
 
-      <hr />
       <!-- shows a random reading list -->
-
+      <hr />
       {{ template "dailylist" . }}
-
       <hr />
 
       <main class="main-links-container" id="main-links">
