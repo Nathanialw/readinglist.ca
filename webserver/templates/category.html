@@ -6,10 +6,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ .Category }}</title>
+    <title>{{ .Category.Category }}</title>
     <!--  icons -->
     <link rel="stylesheet" href="/assets/icons/css/all.css" />
     <!-- index styles -->
+    <link rel="stylesheet" href="/css/chart.css" />
     <link rel="stylesheet" href="/js/nav/style.css" />
     <link rel="stylesheet" href="/js/footer/style.css" />
     <link rel="stylesheet" href="/style.css" />
@@ -22,6 +23,20 @@
 
     <!-- quick links to charts -->
     <main class="main-container">
+ 
+      <section class="overview-chart">
+        <h2>{{ .Category.Category }}</h2>
+        <div class="title-underline"></div>
+        <img
+          src="{{ .Category.Image }}"
+          alt="{{ .Category.Category }} chart"
+          class="img"
+        />
+        <p class="overview-text">
+          {{ if ne .Category.Description "NA" }} {{ .Category.Description }} {{ end }}
+        </p>
+      </section>      
+
       <article class="links-container">
         <header>
           <h1 class="title title-header">quick links</h1>

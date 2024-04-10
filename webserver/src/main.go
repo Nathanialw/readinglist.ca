@@ -19,7 +19,7 @@ type UserSession struct {
 	Username    string
 	LoggedIn    bool
 	Reading     Reading
-	Category    string
+	Category    Category
 	Categories  []Category
 	ReadingList []ReadingList
 }
@@ -145,7 +145,7 @@ func category(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	var data UserSession
 	data.Username = "Nathan"
 	data.LoggedIn = false
-	data.Category = list
+	data.Category, _ = GetCategory(list)
 	data.ReadingList, _ = ReadingLists(list)
 
 	generateHTML(w, data, "category", "navbar", "footer", "category")

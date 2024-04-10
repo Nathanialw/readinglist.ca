@@ -38,6 +38,7 @@ type Book struct {
 	Link_pdf      string
 	Link_epub     string
 	Link_handmade string
+	Link_text     string
 }
 
 type readinglistbooks struct {
@@ -62,7 +63,7 @@ func Init() {
 }
 
 func Categories() (threads []Category, err error) {
-	rows, err := db.Query("select name, image, description from categories")
+	rows, err := db.Query("select name, image, description from categories where active = 1")
 
 	if err != nil {
 		fmt.Printf("%s", err)
@@ -116,13 +117,13 @@ func Books(list string) (threads []Book, err error) {
 		lst := readinglistbooks{}
 		bookuids.Scan(&lst.Bookuid)
 		fmt.Printf("bookuid: %d\n", lst.Bookuid)
-		rows, err = db.Query("select title, subtitle, author, publish_year, image, synopsis, link_amazon, link_indigo, link_pdf, link_epub, link_handmade from books where uid = ?", lst.Bookuid)
+		rows, err = db.Query("select title, subtitle, author, publish_year, image, synopsis, link_amazon, link_indigo, link_pdf, link_epub, link_handmade, link_text from books where uid = ?", lst.Bookuid)
 		if err != nil {
 			fmt.Printf("%s", err)
 		}
 		th := Book{}
 		for rows.Next() {
-			if err = rows.Scan(&th.Title, &th.Subtitle, &th.Author, &th.Publish_year, &th.Image, &th.Synopsis, &th.Link_amazon, &th.Link_indigo, &th.Link_pdf, &th.Link_epub, &th.Link_handmade); err != nil {
+			if err = rows.Scan(&th.Title, &th.Subtitle, &th.Author, &th.Publish_year, &th.Image, &th.Synopsis, &th.Link_amazon, &th.Link_indigo, &th.Link_pdf, &th.Link_epub, &th.Link_handmade, &th.Link_text); err != nil {
 				fmt.Printf("%s", err)
 				return
 			}
@@ -148,6 +149,24 @@ func GetReadingList(name string) (threads ReadingList, err error) {
 			return
 		}
 		fmt.Printf("name: %s, image: %s\n", threads.Name, threads.Chart)
+	}
+	rows.Close()
+	return
+}
+
+func GetCategory(name string) (threads Category, err error) {
+	rows, err := db.Query("select name, image, description from categories where name = ? and active = 1", name)
+
+	if err != nil {
+		fmt.Printf("%s", err)
+		return
+	}
+	for rows.Next() {
+		if err = rows.Scan(&threads.Category, &threads.Image, &threads.Description); err != nil {
+			fmt.Printf("%s", err)
+			return
+		}
+		fmt.Printf("category: %s, image: %s\n", threads.Category, threads.Image)
 	}
 	rows.Close()
 	return

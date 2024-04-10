@@ -56,7 +56,8 @@
                         {{ if ne .Link_epub "NA" }} <li id="link_epub"><a class='fa fa-book-open' href='{{.Link_epub}}' target='_blank' ></a></li> {{ end }}
                         {{ if ne .Link_amazon "NA" }} <li id="link_amazon"><a class='fab fa-amazon' href='{{.Link_amazon}}' target='_blank' ></a></li> {{ end }}
                         {{ if ne .Link_indigo "NA" }} <li id="link_indigo"><a class='' href='{{.Link_indigo}}' target='_blank'>indigo</a></li> {{ end }}
-                        {{ if ne .Link_handmade "NA" }} <li id="link_handmade"><a class='fa fa-book' href='#' target='_blank'></a></li> {{ end }}
+                        {{ if ne .Link_handmade "NA" }} <li id="link_handmade"><a class='fa fa-book' href='{{.Link_handmade}}' target='_blank'></a></li> {{ end }}
+                        {{ if ne .Link_text "NA" }} <li id="link_handmade"><a class='fa fa-file-text' href='{{.Link_text}}' target='_blank'></a></li> {{ end }}
                     </ul>
                 </div>
             </div>        
