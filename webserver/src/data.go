@@ -81,8 +81,8 @@ func Categories() (threads []Category, err error) {
 			return
 		}
 		threads = append(threads, th)
-		fmt.Printf("category: %s, image: %s\n", th.Category, th.Image)
 	}
+	fmt.Printf("category loaded")
 	rows.Close()
 	return
 }

@@ -74,7 +74,7 @@ func CheckPassword(r *http.Request) bool {
 }
 
 func CheckEmail(r *http.Request) bool {
-	if !strings.Contains(r.FormValue("email"), "@") {
+	if !strings.Contains(r.FormValue("email"), "@") || !strings.Contains(r.FormValue("email"), ".") {
 		fmt.Printf("%s, Not a valid email address.\n", r.FormValue("email"))
 		return false
 	}
@@ -134,6 +134,26 @@ func GetFromDB() bool {
 
 }
 
+func CheckAdmin(username string) bool {
+	rows, err := userDB.Query("select admin from users where username = ?", username)
+
+	if err != nil {
+		fmt.Printf("failed to authenticate admin priviliges: %s, %s\n", username, err)
+		rows.Close()
+		return false
+	}
+	if rows.Next() {
+		var admin bool
+		rows.Scan(&admin)
+		fmt.Printf("Successfully Authenticated: %s\n", username)
+		rows.Close()
+		return admin
+	}
+	fmt.Printf("failed to authenticate admin priviliges: %s\n", username)
+	rows.Close()
+	return false
+}
+
 func Authenticate(r *http.Request) bool {
 	username := r.FormValue("username")
 	password := r.FormValue("password")
@@ -175,6 +195,21 @@ func LoginStatus(r *http.Request) bool {
 	}
 }
 
+func AdminStatus(r *http.Request) bool {
+	cookie, err := r.Cookie("admin")
+	if err != nil {
+		// If there's an error, it means the cookie does not exist
+		return false
+	}
+
+	// Check the value of the cookie
+	if cookie.Value == "true" {
+		return true
+	} else {
+		return false
+	}
+}
+
 func SetCookies(w http.ResponseWriter, r *http.Request) {
 	cookie := http.Cookie{
 		Name:  "loggedin",
@@ -188,6 +223,18 @@ func SetCookies(w http.ResponseWriter, r *http.Request) {
 		Path:  "/",
 	}
 	http.SetCookie(w, &cookie)
+	if CheckAdmin(r.FormValue("username")) {
+		cookie = http.Cookie{
+			Name: "admin",
+			//instead of true, we can use a hash value
+			Value: "true",
+			Path:  "/",
+		}
+		http.SetCookie(w, &cookie)
+	}
+
+	//deviceID
+	//timezone
 }
 
 func ClearAllCookies(w http.ResponseWriter) {
@@ -200,6 +247,13 @@ func ClearAllCookies(w http.ResponseWriter) {
 	http.SetCookie(w, cookie)
 	cookie = &http.Cookie{
 		Name:   "username",
+		Value:  "",
+		MaxAge: -1,
+		Path:   "/",
+	}
+	http.SetCookie(w, cookie)
+	cookie = &http.Cookie{
+		Name:   "admin",
 		Value:  "",
 		MaxAge: -1,
 		Path:   "/",

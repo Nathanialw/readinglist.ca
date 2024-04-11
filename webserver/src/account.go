@@ -11,6 +11,7 @@ var currentPage string = "/"
 
 type UserSession struct {
 	Username    string
+	Admin       bool
 	LoggedIn    bool
 	Reading     Reading
 	Category    Category
@@ -22,7 +23,7 @@ func signup(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	currentPage = r.URL.Path
 	var data UserSession
 	data.LoggedIn = LoginStatus(r)
-
+	data.Admin = AdminStatus(r)
 	generateHTML(w, data, "signup", "navbar", "footer", "signup")
 }
 
@@ -33,7 +34,7 @@ func login(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 	var data UserSession
 	data.LoggedIn = LoginStatus(r)
-
+	data.Admin = AdminStatus(r)
 	generateHTML(w, data, "login", "navbar", "footer", "login")
 }
 
@@ -61,9 +62,9 @@ func account(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 	var data UserSession
 	data.LoggedIn = LoginStatus(r)
+	data.Admin = AdminStatus(r)
 	data.Username = GetUsername(r)
-	//now I can is the username as a key to get the data about the user's account
-	//I need to get the account data at the same time that the user logs in and is authenticated
+	//can save a hashed value as a cookie and use that to get the user's data
 
 	generateHTML(w, data, "account", "navbar", "footer", "account")
 }

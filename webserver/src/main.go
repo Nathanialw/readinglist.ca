@@ -23,6 +23,7 @@ func main() {
 	r.GET("/category/*categoryPath", category)
 	r.GET("/readinglist/*listPath", readinglist)
 
+	r.GET("/admin", admin)
 	r.GET("/signup", signup)
 	r.GET("/login", login)
 	r.GET("/logout", logout)
@@ -46,6 +47,15 @@ func notfound(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 	var data UserSession
 	data.LoggedIn = LoginStatus(r)
-
+	data.Admin = AdminStatus(r)
 	generateHTML(w, data, "notfound", "navbar", "footer", "notfound")
+}
+
+func admin(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
+
+	var data UserSession
+	data.LoggedIn = LoginStatus(r)
+	data.Admin = AdminStatus(r)
+	generateHTML(w, data, "admin", "navbar", "footer", "admin")
 }

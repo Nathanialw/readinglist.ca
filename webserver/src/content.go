@@ -29,7 +29,7 @@ func home(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	var data UserSession
 	data.Categories, _ = Categories()
 	data.LoggedIn = LoginStatus(r)
-
+	data.Admin = AdminStatus(r)
 	generateHTML(w, data, "landing", "navbar", "footer", "dailylist", "category", "landing")
 }
 
@@ -39,7 +39,7 @@ func contact(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 	var data UserSession
 	data.LoggedIn = LoginStatus(r)
-
+	data.Admin = AdminStatus(r)
 	generateHTML(w, data, "contact", "navbar", "footer", "contact")
 }
 
@@ -49,7 +49,7 @@ func about(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 	var data UserSession
 	data.LoggedIn = LoginStatus(r)
-
+	data.Admin = AdminStatus(r)
 	generateHTML(w, data, "about", "navbar", "footer", "about")
 }
 
@@ -61,7 +61,7 @@ func category(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("category: %s\n", list)
 	var data UserSession
 	data.LoggedIn = LoginStatus(r)
-
+	data.Admin = AdminStatus(r)
 	data.Category, _ = GetCategory(list)
 	data.ReadingList, _ = ReadingLists(list)
 
@@ -76,7 +76,7 @@ func readinglist(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	//var data Reading
 	var data UserSession
 	data.LoggedIn = LoginStatus(r)
-
+	data.Admin = AdminStatus(r)
 	data.Reading.Books, _ = Books(list)
 	data.Reading.Reading_list, _ = GetReadingList(list)
 

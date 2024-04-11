@@ -25,6 +25,7 @@ TODO:
 		accounts:
 			signup form with all checking logic
 			login with authenication
+			need to limit how many times someone can request to create an account
 
 		forum: (it should be designed in such away that the garbage comments fall away the the good comments are kept)
 			comment section beneath every category

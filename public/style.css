@@ -168,6 +168,12 @@ ul {
   display: inline-block;
 }
 
+.btn-center {
+  display: block;
+  width: 10rem;
+  margin: 0 auto;
+}
+
 .btn:hover {
   background: var(--primary-700);
   box-shadow: var(--shadow-3);
@@ -241,6 +247,11 @@ ul {
 
 .form-textarea {
   height: 7rem;
+}
+
+.form-link {
+  margin: 0 auto;
+  text-align: center;
 }
 
 ::placeholder {

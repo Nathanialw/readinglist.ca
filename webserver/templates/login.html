@@ -23,15 +23,18 @@
 
     <main class="main-container">
         <article>
-          <h1>Login</h1>
-          <form action="/authenticate" method="post">
-              <label for="username">Username:</label>
-              <input type="text" id="username" name="username">
-              <label for="password">Password:</label>
-              <input type="password" id="password" name="password">
-              <input type="submit" value="Login">
+          <h1 class="title">Login</h1>
+          <div class="title-underline"></div>
+          <form class="form" action="/authenticate" method="post">
+              <label class="form-label" for="username">Username:</label>
+              <input class="form-input form-row" type="text" id="username" name="username">
+              <label class="form-label" for="password">Password:</label>
+              <input class="form-input form-row" type="password" id="password" name="password">
+              <input class="btn btn-center" type="submit" value="Login">
           </form>
-          <a href="/signup"><p> Don't have an account?</p></a>
+          <p class="form-link">
+            <a href="/signup">Don't have an account?</a>
+          </p>
         </article>
     </main>
 

@@ -23,18 +23,22 @@
 
     <main class="main-container">
         <article>
-          <h1>Signup</h1>
-          <form action="/signup_account" method="post">
-              <label for="username">Username:</label>
-              <input type="text" id="username" name="username">
-              <label for="email">Email:</label>
-              <input type="text" id="email" name="email">
-              <label for="password">Password:</label>
-              <input type="password" id="password" name="password">
-              <label for="repeat-password">Password:</label>
-              <input type="password" id="repeat-password" name="repeat-password">
-              <input type="submit" value="Signup">
+          <h1 class="title">Signup</h1>
+          <div class="title-underline"></div>
+          <form class="form" action="/signup_account" method="post">
+              <label class="form-label" for="username">Username:</label>
+              <input class="form-input form-row" type="text" id="username" name="username">
+              <label class="form-label" for="email">Email:</label>
+              <input class="form-input form-row" type="text" id="email" name="email">
+              <label class="form-label" for="password">Password:</label>
+              <input class="form-input form-row" type="password" id="password" name="password">
+              <label class="form-label" for="repeat-password">Password:</label>
+              <input class="form-input form-row" type="password" id="repeat-password" name="repeat-password">
+              <input class="btn btn-center" type="submit" value="Signup">
           </form>
+          <p class="form-link">
+            <a href="/login">Already have an account?</a>
+          </p>
         </article>
     </main>
 
