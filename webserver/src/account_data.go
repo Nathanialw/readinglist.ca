@@ -6,6 +6,8 @@ import (
 	"net/http"
 	"strings"
 
+	"golang.org/x/crypto/bcrypt"
+
 	_ "github.com/mattn/go-sqlite3"
 )
 
@@ -118,6 +120,8 @@ func InsertIntoDB(r *http.Request) bool {
 		return false
 	}
 
+	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+
 	// Prepare SQL statement
 	stmt, err := userDB.Prepare("INSERT INTO users(username, password) VALUES(?, ?)")
 	if err != nil {
@@ -125,7 +129,7 @@ func InsertIntoDB(r *http.Request) bool {
 	}
 
 	// Execute SQL statement
-	_, err = stmt.Exec(username, password)
+	_, err = stmt.Exec(username, hashedPassword)
 	return err == nil
 }
 
@@ -162,15 +166,24 @@ func Authenticate(r *http.Request) bool {
 		return false
 	}
 
-	rows, err := userDB.Query("select username, password from users where username = ? and password = ?", username, password)
+	rows, err := userDB.Query("select username, password from users where username = ?", username)
 
 	if err != nil {
-		fmt.Printf("failed to authenticate: %s, %s, %s\n", username, password, err)
+		fmt.Printf("failed to authenticate: %s, %s\n", username, err)
 		rows.Close()
 		return false
 	}
 
 	if rows.Next() {
+		var passwordDB string
+		rows.Scan(&username, &passwordDB)
+
+		err = bcrypt.CompareHashAndPassword([]byte(passwordDB), []byte(password))
+		if err != nil {
+			fmt.Printf("Invalid password %s, %s\n", password, []byte(password))
+			return false
+		}
+
 		fmt.Printf("Successfully Authenticated: %s, %s\n", username, password)
 		rows.Close()
 		return true
