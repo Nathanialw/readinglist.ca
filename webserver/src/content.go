@@ -63,6 +63,10 @@ func category(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	data.LoggedIn = LoginStatus(r)
 	data.Admin = AdminStatus(r)
 	data.Category, _ = GetCategory(list)
+	if data.Category.Category == "" {
+		notfound(w, r, p)
+		return
+	}
 	data.ReadingList, _ = ReadingLists(list)
 
 	generateHTML(w, data, "category", "navbar", "footer", "category")
@@ -77,8 +81,12 @@ func readinglist(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	var data UserSession
 	data.LoggedIn = LoginStatus(r)
 	data.Admin = AdminStatus(r)
-	data.Reading.Books, _ = Books(list)
 	data.Reading.Reading_list, _ = GetReadingList(list)
+	if data.Reading.Reading_list.Name == "" {
+		notfound(w, r, p)
+		return
+	}
+	data.Reading.Books, _ = Books(list)
 
 	generateHTML(w, data, "readinglist", "navbar", "footer", "readinglist")
 }

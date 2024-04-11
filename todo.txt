@@ -26,6 +26,11 @@ TODO:
 			signup form with all checking logic
 			login with authenication
 			need to limit how many times someone can request to create an account
+			use JS to check if the login form is filled in correctly and provide an error message for the user before verifying on the server
+				-username length min-max
+				-email correct format
+				-repeat password is the same
+				
 
 		forum: (it should be designed in such away that the garbage comments fall away the the good comments are kept)
 			comment section beneath every category

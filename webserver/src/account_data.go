@@ -13,13 +13,6 @@ import (
 
 var userDB *sql.DB
 
-type User struct {
-	Username string
-	Password string
-}
-
-var Username = "Nathan"
-
 func FieldLength(r *http.Request) bool {
 	//empty fields
 	if len(r.FormValue("username")) == 0 || len(r.FormValue("email")) == 0 || len(r.FormValue("password")) == 0 || len(r.FormValue("repeat-password")) == 0 {
@@ -225,7 +218,8 @@ func AdminStatus(r *http.Request) bool {
 
 func SetCookies(w http.ResponseWriter, r *http.Request) {
 	cookie := http.Cookie{
-		Name:  "loggedin",
+		Name: "loggedin",
+		//instead of true, we can use a hash value
 		Value: "true",
 		Path:  "/",
 	}

@@ -6,6 +6,7 @@ package main
 import (
 	"fmt"
 	"net/http"
+	"os"
 
 	"github.com/julienschmidt/httprouter"
 )
@@ -13,9 +14,12 @@ import (
 func main() {
 	Init()
 	r := httprouter.New()
-	r.NotFound = http.StripPrefix("/", http.FileServer(http.Dir("../../public/")))
 
-	r.GET("/404", notfound)
+	//r.NotFound = http.StripPrefix("/", http.FileServer(http.Dir("../../public/")))
+	fs := http.FileServer(http.Dir("../../public/"))
+	r.NotFound = http.StripPrefix("/", fileServerWith404(fs))
+
+	r.GET("/notfound", notfound)
 
 	r.GET("/", home)
 	r.GET("/contact", contact)
@@ -42,6 +46,23 @@ func main() {
 	}
 }
 
+func fileServerWith404(h http.Handler) http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		_, err := os.Stat("../../public/" + r.URL.Path)
+
+		if os.IsNotExist(err) {
+			fmt.Printf("file does not exist: %s\n", r.URL.Path)
+			// If the file does not exist, serve your 404 page
+			notfound(w, r, httprouter.Params{})
+			return
+		}
+
+		fmt.Printf("file exists: %s\n", r.URL.Path)
+		// If the file exists, serve it
+		h.ServeHTTP(w, r)
+	}
+}
+
 func notfound(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 
@@ -57,5 +78,9 @@ func admin(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	var data UserSession
 	data.LoggedIn = LoginStatus(r)
 	data.Admin = AdminStatus(r)
+	if !data.Admin {
+		notfound(w, r, p)
+		return
+	}
 	generateHTML(w, data, "admin", "navbar", "footer", "admin")
 }

@@ -9,7 +9,6 @@
   const links = getElement(".nav-links");
 
   navToggle.addEventListener("click", function () {
-    console.log("henlo");
     links.classList.toggle("show-links");
   });
 
