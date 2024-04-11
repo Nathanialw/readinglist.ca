@@ -28,8 +28,7 @@ func home(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 	var data UserSession
 	data.Categories, _ = Categories()
-	data.Username = Username
-	data.LoggedIn = LoggedIn
+	data.LoggedIn = LoginStatus(r)
 
 	generateHTML(w, data, "landing", "navbar", "footer", "dailylist", "category", "landing")
 }
@@ -39,8 +38,7 @@ func contact(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 
 	var data UserSession
-	data.Username = Username
-	data.LoggedIn = LoggedIn
+	data.LoggedIn = LoginStatus(r)
 
 	generateHTML(w, data, "contact", "navbar", "footer", "contact")
 }
@@ -50,8 +48,7 @@ func about(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 
 	var data UserSession
-	data.Username = Username
-	data.LoggedIn = LoggedIn
+	data.LoggedIn = LoginStatus(r)
 
 	generateHTML(w, data, "about", "navbar", "footer", "about")
 }
@@ -63,8 +60,8 @@ func category(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	list := strings.TrimPrefix(p.ByName("categoryPath"), "/")
 	fmt.Printf("category: %s\n", list)
 	var data UserSession
-	data.Username = Username
-	data.LoggedIn = LoggedIn
+	data.LoggedIn = LoginStatus(r)
+
 	data.Category, _ = GetCategory(list)
 	data.ReadingList, _ = ReadingLists(list)
 
@@ -78,8 +75,8 @@ func readinglist(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("readinglist: %s\n", list)
 	//var data Reading
 	var data UserSession
-	data.Username = Username
-	data.LoggedIn = LoggedIn
+	data.LoggedIn = LoginStatus(r)
+
 	data.Reading.Books, _ = Books(list)
 	data.Reading.Reading_list, _ = GetReadingList(list)
 

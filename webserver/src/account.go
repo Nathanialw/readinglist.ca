@@ -7,9 +7,6 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-var Username = "Nathan"
-var LoggedIn = false
-
 var currentPage string = "/"
 
 type UserSession struct {
@@ -24,8 +21,7 @@ type UserSession struct {
 func signup(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	currentPage = r.URL.Path
 	var data UserSession
-	data.Username = Username
-	data.LoggedIn = LoggedIn
+	data.LoggedIn = LoginStatus(r)
 
 	generateHTML(w, data, "signup", "navbar", "footer", "signup")
 }
@@ -36,8 +32,7 @@ func login(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 
 	var data UserSession
-	data.Username = Username
-	data.LoggedIn = LoggedIn
+	data.LoggedIn = LoginStatus(r)
 
 	generateHTML(w, data, "login", "navbar", "footer", "login")
 }
@@ -45,7 +40,8 @@ func login(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 func logout(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 	fmt.Printf("URL path : %s\n", r.URL.Path)
-	LoggedIn = false
+
+	ClearAllCookies(w)
 
 	if currentPage == "/account" {
 		currentPage = "/"
@@ -56,27 +52,27 @@ func logout(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 func account(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 	currentPage = r.URL.Path
-	//username := r.FormValue("username")
-	//_, ok := users[username]
-	//if !ok {
-	if !LoggedIn {
+
+	if !LoginStatus(r) {
 		print("not logged in\n")
 		http.Redirect(w, r, "/login", 302)
 		return
 	}
-	print("going to account\n")
+
 	var data UserSession
-	data.Username = Username
-	data.LoggedIn = LoggedIn
+	data.LoggedIn = LoginStatus(r)
+	data.Username = GetUsername(r)
+	//now I can is the username as a key to get the data about the user's account
+	//I need to get the account data at the same time that the user logs in and is authenticated
+
 	generateHTML(w, data, "account", "navbar", "footer", "account")
 }
 
 func signup_account(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	print("signup_account\n" + p.ByName("name"))
-	currentPage = r.URL.Path
 
-	LoggedIn = InsertIntoDB(r)
-	if LoggedIn {
+	if InsertIntoDB(r) {
+		SetCookies(w, r)
 		http.Redirect(w, r, "/", 302)
 	}
 	http.Redirect(w, r, "/signup", 302)
@@ -85,11 +81,9 @@ func signup_account(w http.ResponseWriter, r *http.Request, p httprouter.Params)
 func authenticate(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("authenticate: %s\n", r.FormValue("username"))
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
-	currentPage = r.URL.Path
 
-	LoggedIn = Authenticate(r)
-	//if true
-	if LoggedIn {
+	if Authenticate(r) {
+		SetCookies(w, r)
 		http.Redirect(w, r, "/", 302)
 	}
 	http.Redirect(w, r, "/login", 302)

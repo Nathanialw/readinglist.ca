@@ -45,8 +45,7 @@ func notfound(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 
 	var data UserSession
-	data.Username = Username
-	data.LoggedIn = LoggedIn
+	data.LoggedIn = LoginStatus(r)
 
 	generateHTML(w, data, "notfound", "navbar", "footer", "notfound")
 }
