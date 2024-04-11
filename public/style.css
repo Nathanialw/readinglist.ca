@@ -66,6 +66,7 @@ html {
   --shadow-3: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
   --shadow-4: 0 20px 25px -5px rgb(0 0 0 / 0.1),
     0 8px 10px -6px rgb(0 0 0 / 0.1);
+
 }
 
 body {
@@ -355,7 +356,7 @@ ul {
   max-width: var(--max-width);
   background: var(--white);
   margin: 0 auto;
-  min-height: calc(100vh - 77px - 125px);
+  min-height: calc(100vh - 3.5rem - 125px);
 }
 
 /* links to charts */

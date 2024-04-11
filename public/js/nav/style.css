@@ -11,7 +11,7 @@ nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 77px;
+  height: 3.5rem;
 }
 
 .logo {
@@ -50,8 +50,8 @@ nav {
   font-weight: 600;
   transition: var(--transition);
   display: block;
-  padding: 0 1rem;
-  font-size: 2.75rem;
+  padding: 0.45rem 1rem;
+  font-size: 1.50rem;
 }
 
 .nav-links a:hover {
@@ -67,6 +67,10 @@ nav {
 }
 
 @media screen and (min-width: 768px) {
+  .navbar {
+    height: 3.50rem;
+  }
+
   .bars {
     display: none;
   }

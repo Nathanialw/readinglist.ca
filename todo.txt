@@ -3,7 +3,6 @@ TODO:
 	CHART-DATA:
 
 		categories:
-			add at least one chart to each category
 
 		book-data:
 			the_general_theory_of_employment_interest_and_money: needs new links for pdf and epub
@@ -12,14 +11,6 @@ TODO:
 			le morte d'Arthur: capitalization styling problem
 			castleview: need a link for pdf
 			the pendragon protocol: needs links, pdf, epub and indigo
-
-		update js:
-			hisory/sino-jap: update js to individual files
-			hisory/roman_re: update js to individual files
-			hisory/medi_fra: update js to individual files
-
-			litera/canaanit: update js to individual files
-
 
 		update to template:
 			
@@ -31,15 +22,17 @@ TODO:
 
 	WEBSITE-DESIGN:
 		
-		-finish main landing page
-		-create a tempate for a category page
-		
+		accounts:
+			signup form with all checking logic
+			login with authenication
 
-	##so how do I store these in a DB?
+		forum: (it should be designed in such away that the garbage comments fall away the the good comments are kept)
+			comment section beneath every category
+			comment section beneath every reading list
+			people that aren't signed up can comment, but their comments are auto deleted after a whlie
+			maybe a voting system to determine if commments are worth keeping
 
--when you click on a genre -> it takes you to the category page
-//this means when you click on the genre you retrive the data for the category page from the DB
-	-- that is a list of categorys, images and their descriptions
-
--when you click on a category you retrive a reading list for that category
-	-- that is a list of the books, images, the descriptions and the links
+		admin:
+			create a special admin account
+			a page that lets me input new reading lists from a page only accessible by the admin account
+			a page that lets me update reading lists from a page only accessible by the admin account

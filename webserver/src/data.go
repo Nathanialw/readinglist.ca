@@ -9,7 +9,7 @@ import (
 	"fmt"
 	"log"
 
-	_ "github.com/glebarez/go-sqlite"
+	_ "github.com/mattn/go-sqlite3"
 )
 
 type Category struct {
@@ -52,18 +52,22 @@ type Reading struct {
 	Books        []Book
 }
 
-var db *sql.DB
+var contentDB *sql.DB
 
 func Init() {
 	var err error
-	db, err = sql.Open("sqlite", "../database/db.sqlite3")
+	contentDB, err = sql.Open("sqlite3", "../database/contentDB.sqlite3")
+	if err != nil {
+		log.Fatal(err)
+	}
+	userDB, err = sql.Open("sqlite3", "../database/userDB.sqlite3")
 	if err != nil {
 		log.Fatal(err)
 	}
 }
 
 func Categories() (threads []Category, err error) {
-	rows, err := db.Query("select name, image, description from categories where active = 1")
+	rows, err := contentDB.Query("select name, image, description from categories where active = 1")
 
 	if err != nil {
 		fmt.Printf("%s", err)
@@ -84,7 +88,7 @@ func Categories() (threads []Category, err error) {
 }
 
 func ReadingLists(list string) (threads []ReadingList, err error) {
-	rows, err := db.Query("select name, category, image, description from readinglists where category = ? and active = 1", list)
+	rows, err := contentDB.Query("select name, category, image, description from readinglists where category = ? and active = 1", list)
 
 	if err != nil {
 		fmt.Printf("%s", err)
@@ -106,7 +110,7 @@ func ReadingLists(list string) (threads []ReadingList, err error) {
 func Books(list string) (threads []Book, err error) {
 	//get all the books from a readinglist
 	//use the uid to get the books from the books table
-	bookuids, err := db.Query("select bookuid from readinglistbooks where reading_list = ?", list)
+	bookuids, err := contentDB.Query("select bookuid from readinglistbooks where reading_list = ?", list)
 
 	//get list of uids
 	//use the uids to get the books
@@ -117,7 +121,7 @@ func Books(list string) (threads []Book, err error) {
 		lst := readinglistbooks{}
 		bookuids.Scan(&lst.Bookuid)
 		fmt.Printf("bookuid: %d\n", lst.Bookuid)
-		rows, err = db.Query("select title, subtitle, author, publish_year, image, synopsis, link_amazon, link_indigo, link_pdf, link_epub, link_handmade, link_text from books where uid = ?", lst.Bookuid)
+		rows, err = contentDB.Query("select title, subtitle, author, publish_year, image, synopsis, link_amazon, link_indigo, link_pdf, link_epub, link_handmade, link_text from books where uid = ?", lst.Bookuid)
 		if err != nil {
 			fmt.Printf("%s", err)
 		}
@@ -137,7 +141,7 @@ func Books(list string) (threads []Book, err error) {
 }
 
 func GetReadingList(name string) (threads ReadingList, err error) {
-	rows, err := db.Query("select name, chart, description from readinglists where name = ?", name)
+	rows, err := contentDB.Query("select name, chart, description from readinglists where name = ?", name)
 
 	if err != nil {
 		fmt.Printf("%s", err)
@@ -155,7 +159,7 @@ func GetReadingList(name string) (threads ReadingList, err error) {
 }
 
 func GetCategory(name string) (threads Category, err error) {
-	rows, err := db.Query("select name, image, description from categories where name = ? and active = 1", name)
+	rows, err := contentDB.Query("select name, image, description from categories where name = ? and active = 1", name)
 
 	if err != nil {
 		fmt.Printf("%s", err)

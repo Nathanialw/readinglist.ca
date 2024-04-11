@@ -27,12 +27,7 @@ func signup(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
 	data.Username = Username
 	data.LoggedIn = LoggedIn
 
-	if InsertIntoDB(r) {
-		generateHTML(w, data, "signup", "navbar", "footer", "signup")
-	} else {
-		//insert failed
-		generateHTML(w, data, "signup", "navbar", "footer", "signup")
-	}
+	generateHTML(w, data, "signup", "navbar", "footer", "signup")
 }
 
 func login(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
@@ -77,13 +72,14 @@ func account(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 }
 
 func signup_account(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-	print("signup_account" + p.ByName("name"))
+	print("signup_account\n" + p.ByName("name"))
 	currentPage = r.URL.Path
 
-	LoggedIn = Authenticate()
-	//if true
-	http.Redirect(w, r, "/", 302)
-
+	LoggedIn = InsertIntoDB(r)
+	if LoggedIn {
+		http.Redirect(w, r, "/", 302)
+	}
+	http.Redirect(w, r, "/signup", 302)
 }
 
 func authenticate(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
@@ -91,7 +87,10 @@ func authenticate(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 	currentPage = r.URL.Path
 
-	LoggedIn = Authenticate()
+	LoggedIn = Authenticate(r)
 	//if true
-	http.Redirect(w, r, "/", 302)
+	if LoggedIn {
+		http.Redirect(w, r, "/", 302)
+	}
+	http.Redirect(w, r, "/login", 302)
 }
