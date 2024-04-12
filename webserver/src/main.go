@@ -5,13 +5,18 @@ package main
 
 import (
 	"fmt"
+	"image"
+	"image/jpeg"
+	"image/png"
 	"io"
 	"mime/multipart"
 	"net/http"
 	"os"
+	"path/filepath"
 	"strings"
 
 	"github.com/julienschmidt/httprouter"
+	"github.com/nfnt/resize"
 )
 
 func main() {
@@ -275,7 +280,8 @@ func submitbook(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	}
 
 	// Create the file in the file system
-	dst, err := os.Create("../../public/assets/images/book_covers/" + handler.Filename)
+	systemPath := "../../public/assets/images/book_covers/" + handler.Filename
+	dst, err := os.Create(systemPath)
 	if err != nil {
 		fmt.Printf("error creating the file: %s\n", err)
 		http.Redirect(w, r, "/addbook", http.StatusSeeOther)
@@ -290,9 +296,80 @@ func submitbook(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		return
 	}
 
+	OSFile, _ := os.Open(systemPath)
+	defer file.Close()
+
+	//resize the image
+	img, _, err := image.Decode(OSFile)
+	if err != nil {
+		fmt.Printf("error decoding the image: %s, %s\n", err, systemPath)
+		http.Redirect(w, r, "/addbook", http.StatusSeeOther)
+		return
+	}
+
+	extension := filepath.Ext(systemPath)
+	switch extension {
+	case ".jpg", ".jpeg":
+		fmt.Printf("jpeg\n")
+		OSFile.Seek(0, 0) // Reset the reader to the start of the file
+		img, err = jpeg.Decode(OSFile)
+		//resize the image to 400x400
+		m := resize.Resize(400, 0, img, resize.Lanczos3)
+		systemPath = "../../public/assets/images/book_covers/400_" + handler.Filename
+		out, _ := os.Create(systemPath)
+		defer out.Close()
+		// Write the new image to the new file
+		jpeg.Encode(out, m, nil)
+
+		m = resize.Resize(100, 0, img, resize.Lanczos3)
+		systemPath = "../../public/assets/images/book_covers/100_" + handler.Filename
+		out, _ = os.Create(systemPath)
+		jpeg.Encode(out, m, nil)
+	case ".png":
+		fmt.Printf("png\n")
+		OSFile.Seek(0, 0) // Reset the reader to the start of the file
+		img, err = png.Decode(OSFile)
+		//resize the image to 400x400
+		m := resize.Resize(400, 0, img, resize.Lanczos3)
+		systemPath = "../../public/assets/images/book_covers/400_" + handler.Filename
+		out, _ := os.Create(systemPath)
+		defer out.Close()
+		// Write the new image to the new file
+		png.Encode(out, m)
+
+		m = resize.Resize(100, 0, img, resize.Lanczos3)
+		systemPath = "../../public/assets/images/book_covers/100_" + handler.Filename
+		out, _ = os.Create(systemPath)
+		png.Encode(out, m)
+	case ".gif":
+		fmt.Printf("unsupported image format: %s\n", extension)
+		http.Redirect(w, r, "/addbook", http.StatusSeeOther)
+		return
+		//OSFile.Seek(0, 0) // Reset the reader to the start of the file
+		//img, err = gif.Decode(OSFile)
+		////resize the image to 400x400
+		//m := resize.Resize(400, 0, img, resize.Lanczos3)
+		//systemPath = "../../public/assets/images/book_covers/400_" + handler.Filename
+		//out, _ := os.Create(systemPath)
+		//defer out.Close()
+		//// Write the new image to the new file
+		//gif.Encode(out, m, nil)
+		//
+		//m = resize.Resize(100, 0, img, resize.Lanczos3)
+		//systemPath = "../../public/assets/images/book_covers/100_" + handler.Filename
+		//out, _ = os.Create(systemPath)
+		//gif.Encode(out, m, nil)
+	default:
+		fmt.Printf("unsupported image format: %s\n", extension)
+		http.Redirect(w, r, "/addbook", http.StatusSeeOther)
+		return
+	}
+
 	//add book to database
 	imagePath := "/assets/images/book_covers/" + handler.Filename
-	_, err = contentDB.Exec("insert into books (title, subtitle, author, publish_year, image, synopsis) values (?, ?, ?, ?, ?, ?)", title, subtitle, author, publish_year, imagePath, synopsis)
+	imagePath100 := "/assets/images/book_covers/100_" + handler.Filename
+	imagePath400 := "/assets/images/book_covers/400_" + handler.Filename
+	_, err = contentDB.Exec("insert into books (title, subtitle, author, publish_year, image, image_100, image_400, synopsis) values (?, ?, ?, ?, ?, ?, ?, ?)", title, subtitle, author, publish_year, imagePath, imagePath100, imagePath400, synopsis)
 	if err != nil {
 		fmt.Printf("error adding book: %s\n", err)
 		http.Redirect(w, r, "/addbook", http.StatusSeeOther)
