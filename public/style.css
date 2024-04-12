@@ -254,6 +254,17 @@ ul {
   text-align: center;
 }
 
+.form-label-adjacent {
+  margin: 0;
+}
+
+.form-adjacent {
+  margin: 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 ::placeholder {
   font-family: inherit;
   color: var(--primary-400);

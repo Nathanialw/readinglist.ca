@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Charts</title>
     <!-- icons -->
-    <link rel="stylesheet" href="/assets/icons/css/all.css" title="icons" />
+    <link rel="icon" href="/assets/icons/css/all.css" title="icons" />
     <link rel="stylesheet" href="/assets/icons/css/all.css" />
     <!-- index styles -->
     <link rel="stylesheet" href="/js/nav/style.css" />
@@ -24,23 +24,37 @@
     </header>
 
     <main class="main-container">
-        <article>
-            <h1 class="title">Account</h1>
-            <div class="title-underline"></div>
-            <p class="overview-text">This is <span style="text-transform: capitalize">{{ .Username }}'s</span> account page</p>
+      <article>
+          <h1 class="title">Account</h1>
+          <div class="title-underline"></div>
+          
+          <h3 class="title">Contribute</h3>
+          <div class="title-underline"></div>
+          <ul class="chart-links">
+            <li><a href="/addbook">Add a book</a></li>
+            <li><a href="/addreadinglist">Add a new reading list</a></li>
+          </ul>
+          <br>
+          <h3 class="title">account</h3>
+          <div class="title-underline"></div>
+          <ul class="chart-links">
+            <li><a href="/readinglists">Reading Lists</a></li>
+            <li><a href="/favoritedbooks">Favorited Books</a></li>
+            <li><a href="/readinghistory">Reading History</a></li>
+            <li><a href="/queuedbooks">Queued Books</a></li>
+            <li><a href="/posthistory">Post History</a></li>
+          </ul>
+          
+          <!-- 
+          <p class="overview-text">This is <span style="text-transform: capitalize">{{ .Username }}'s</span> account page</p>
+            user's reading lists 
+            favorited books
+            reading history
+            queued books            
 
-
-            <!-- 
-              user's reading lists 
-              favorited books
-              reading history
-              queued books            
-
-              post history          
-            
-            
-            -->
-        </article>
+            post history          
+          -->
+      </article>      
     </main>
 
     <footer id="footer">
