@@ -17,6 +17,7 @@ type UserSession struct {
 	Category    Category
 	Categories  []Category
 	ReadingList []ReadingList
+	Books       []Book
 }
 
 func signup(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {

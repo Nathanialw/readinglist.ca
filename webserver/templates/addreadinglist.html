@@ -6,7 +6,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>contact</title>
+    <title>Create a Reading List</title>
     <!-- icons -->
     <link rel="icon" href="/assets/icons/css/all.css" title="icons" />
     <link rel="stylesheet" href="/assets/icons/css/all.css" />
@@ -24,11 +24,6 @@
     </header>
     <main class="main-container">
       <article>
-        <h1 class="title">Admin</h1>
-        <div class="title-underline"></div>
-      </article>
-
-      <article>
         <h3 class="title">Create a Reading List</h3>
         <div class="title-underline"></div>
 
@@ -39,14 +34,20 @@
           <label class="form-label" for="image">Image:</label>
           <input class="form-input form-row" type="file" id="image" name="image" required>
           <br>
+          <select class="form-input form-row form-adjacent" style="text-transform: capitalize;" id="publish_era" name="publish_era" required>
+            {{ range .Books }}
+            <option value="{{ .Title }}">{{ .Title }}{{ if ne .Subtitle "NA" }}: {{ .Subtitle }}{{ end }}, by: {{ .Author }}</option>
+            {{ end }}
+          </select>
+          <br>
           <label class="form-label" for="category">Category:</label>
-          <select class="form-input form-row" id="category" name="category" required>
-            <option value="0">Select a category</option>
+          <select class="form-input form-row" style="text-transform: capitalize;" id="category" name="category" required>
               {{ range .Categories }}
-                <option value="{{ .ID }}">{{ .Category }}</option>
+                <option value="{{ .Category }}">{{ .Category }}</option>
               {{ end }}
           </select>
           <br>
+          <!-- maybe add subcategories if it makes sense later -->
           <label class="form-label" for="description">Description:</label>
           <textarea class="form-input form-row form-textarea" id="description" name="description" required></textarea>
           <br>
