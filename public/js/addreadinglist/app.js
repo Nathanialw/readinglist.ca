@@ -46,6 +46,10 @@
 
     //replace the html in the select options with the sorted array
     function displayBooks(bookList) {
+        //save the current value of the select
+        var selectedOption = document.getElementById(bookList).value;
+        
+        
         var bookList = document.getElementById(bookList);
         while (bookList.firstChild) {
             bookList.removeChild(bookList.firstChild);
@@ -62,6 +66,11 @@
             option.text = text;
             bookList.add(option);
         }
+        //after sorting, set the value of the select to the saved value
+        if (selectedOption == "") {
+            selectedOption = books[0].Title
+        }
+        document.getElementById(bookList.id).value = selectedOption;
     }
 
     displayBooks("book1")
@@ -69,16 +78,18 @@
     function SortBooks(book) {
         var selectedOption = event.target.value;
 
-    if (selectedOption == "byTitle") {
-        sortBooksTitle()
-    }
-    else if (selectedOption == "byAuthor") {
-        sortBooksAuthor()
-    }
-    else if (selectedOption == "bySubtitle") {
-        sortBooksSubtitle()
-    }
-    displayBooks(book)
+        if (selectedOption == "byAuthor") {
+            sortBooksAuthor()
+        }
+        else if (selectedOption == "bySubtitle") {
+            sortBooksSubtitle()
+        }
+        else {
+            sortBooksTitle()
+        }
+
+        //the display values should be based on the select that was changed so we can type to find the book
+        displayBooks(book)
     }
 
     // Add an event listener for the change event
@@ -107,6 +118,7 @@
         selectSort.style.fontSize = "0.75rem";
         selectSort.id = "sort" + numBooks;
         selectSort.name = "sort" + numBooks;
+        selectSort.value = "byTitle";
         selectSort.required = true;
         selectSort.innerHTML = '<option value="byTitle">Sort By Title</option><option value="byAuthor">Sort By Author</option><option value="bySubtitle">Sort By Subtitle</option>';
         span.appendChild(selectSort);  
@@ -135,22 +147,22 @@
         span.appendChild(removeButton);   
         
         document.getElementById("readingList").appendChild(book);
-        displayBooks("book" + numBooks)
+        SortBooks("book" + numBooks)
         
         const currentNumBooks = numBooks
         document.getElementById("sort" + currentNumBooks).addEventListener('change', function(event) {
             SortBooks("book" + currentNumBooks)
         });
     });
+    
+    //when i click the remove button, remove the book from the ul associated with the button includibg the li
+    document.getElementById('readingList').addEventListener('click', function(event) {
+        if (event.target.tagName === 'BUTTON') {
+            event.target.parentElement.parentElement.remove()
+        }
+    });
+    
 }
-
-//when i click the remove button, remove the book from the ul associated with the button includibg the li
-document.getElementById('readingList').addEventListener('click', function(event) {
-    if (event.target.tagName === 'BUTTON') {
-        event.target.parentElement.parentElement.remove()
-    }
-});
-
 
 
 
