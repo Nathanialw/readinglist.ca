@@ -34,7 +34,7 @@
           <label class="form-label" for="image">Image:</label>
           <input class="form-input form-row" type="file" id="image" name="image" required>
           <br>
-          <select class="form-input form-row form-adjacent" style="text-transform: capitalize;" id="publish_era" name="publish_era" required>
+          <select class="form-input form-row form-adjacent" style="text-transform: capitalize;" id="books" name="books" required>
             {{ range .Books }}
             <option value="{{ .Title }}">{{ .Title }}{{ if ne .Subtitle "NA" }}: {{ .Subtitle }}{{ end }}, by: {{ .Author }}</option>
             {{ end }}
