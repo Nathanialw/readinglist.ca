@@ -18,6 +18,7 @@ type UserSession struct {
 	Categories  []Category
 	ReadingList []ReadingList
 	Books       []Book
+	JsonBooks   string
 }
 
 func signup(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {

@@ -38,6 +38,7 @@ func main() {
 	r.GET("/addbook", addbook)
 	r.GET("/addreadinglist", addreadinglist)
 	r.POST("/submitbook", submitbook)
+	r.POST("/submitreadinglist", submitreadinglist)
 
 	r.GET("/readinglists", underconstruction)
 	r.GET("/favoritedbooks", underconstruction)

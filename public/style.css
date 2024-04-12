@@ -381,6 +381,13 @@ ul {
   min-height: calc(100vh - 3.5rem - 125px);
 }
 
+.main-container-nobackground {
+  max-width: var(--max-width);
+  background: var(--backgroundColor);
+  margin: 0 auto;
+  min-height: calc(100vh - 3.5rem - 125px);
+}
+
 /* links to charts */
 
 .chart-links {
