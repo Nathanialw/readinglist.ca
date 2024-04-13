@@ -21,6 +21,7 @@ func addbook(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 
 	var data UserSession
 	data.LoggedIn = LoginStatus(r)
+	data.Admin = AdminStatus(r)
 	generateHTML(w, data, "addbook", "navbar", "footer", "addbook")
 }
 

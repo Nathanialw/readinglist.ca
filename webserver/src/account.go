@@ -14,6 +14,7 @@ type UserSession struct {
 	Admin       bool
 	LoggedIn    bool
 	Reading     Reading
+	Book        Book
 	Category    Category
 	Categories  []Category
 	ReadingList []ReadingList

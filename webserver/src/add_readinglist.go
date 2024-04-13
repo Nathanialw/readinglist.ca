@@ -31,6 +31,7 @@ func addreadinglist(w http.ResponseWriter, r *http.Request, p httprouter.Params)
 
 	var data UserSession
 	data.LoggedIn = LoginStatus(r)
+	data.Admin = AdminStatus(r)
 	data.Books = getAllBooksFromDB()
 
 	books := make([]Book, len(data.Books))

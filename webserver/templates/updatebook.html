@@ -1,0 +1,89 @@
+{{ define "updatebook" }}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Update Book</title>
+    <!-- icons -->
+    <link rel="icon" href="/assets/icons/css/all.css" title="icons" />
+    <link rel="stylesheet" href="/assets/icons/css/all.css" />
+    <!-- index styles -->
+    <link rel="stylesheet" href="/js/nav/style.css" />
+    <link rel="stylesheet" href="/js/footer/style.css" />
+    <link rel="stylesheet" href="/style.css" />
+    <link rel="stylesheet" href="/css/chart.css" />
+  </head>
+  
+  <body>
+    <!-- navigation bar at the top -->
+    <header class="nav-center" id="nav-bar">
+      {{ template "navbar" . }}
+    </header>
+
+    <main class="main-container-nobackground">
+        <article>
+          <h3 class="title">Update Book</h3>
+          <div class="title-underline"></div>
+        </article>
+
+        <article>
+          <form class="form" action="">
+            <label class="form-label" for="search">Search</label>
+            <select class="form-input form-row" style="text-transform: capitalize;" name="bookList" id="bookList"></select>
+            <input class="btn btn-center btn-submit" type="submit" value="Search Book">
+          </form>
+        </article>
+
+        <article>
+          <form class="form" action="">
+            <label class="form-label" for="title">Title</label>
+            <input class="form-input" type="text" id="title" name="title" placeholder="Book Title" required>
+            <label class="form-label" for="author">Author</label>
+            <input class="form-input" type="text" id="author" name="author" placeholder="Book Author" required>
+            <label class="form-label" for="genre">Genre</label>
+            <input class="form-input" type="text" id="genre" name="genre" placeholder="Book Genre" required>
+            <span class="form-adjacent" style="margin: 1rem auto;">
+            <label class="form-label form-adjacent" for="year">Year</label>
+            <input class="form-input form-adjacent" style="width: 150px;" type="number" id="year" name="year" placeholder="Book Year" required>
+            <select class="form-input form-adjacent" style="text-transform: capitalize; width: 125px; font-size: 0.75rem" id="era" name="era" required>
+              <option value="AD">AD</option>
+              <option value="BC">BC</option>
+            </select>
+            </span>
+            <label class="form-label" for="description">Description</label>
+            <textarea class="form-input form-desc" id="description" name="description" placeholder="Book Description" required></textarea>
+            <!--links-->
+            <label class="form-label" for="link_amazon">Amazon Link</label>
+            <input class="form-input" type="url" id="link_amazon" name="link_amazon" placeholder="Amazon Link">
+            <label class="form-label" for="link_indigo">Indigo Link</label>
+            <input class="form-input" type="url" id="link_indigo" name="link_indigo" placeholder="Indigo Link">
+            <label class="form-label" for="link_pdf">PDF Link</label>
+            <input class="form-input" type="url" id="link_pdf" name="link_pdf" placeholder="PDF Link">
+            <label class="form-label" for="link_epub">EPUB Link</label>
+            <input class="form-input" type="url" id="link_epub" name="link_epub" placeholder="EPUB Link">
+            <label class="form-label" for="link_text">Text Link</label>
+            <input class="form-input" type="url" id="link_text" name="link_text" placeholder="Text Link">
+            <!--buttons-->
+            <input class="btn btn-center btn-submit" type="submit" value="Update Book" class="btn btn-primary">
+          </form>
+        </article>
+
+    </main>
+
+    <footer id="footer">
+        {{ template "footer" . }}
+      </footer>
+
+   </body>
+   <script>
+    var books = JSON.parse('{{.JsonBooks}}');
+    // You can now use the books array in your JavaScript code
+  </script>
+
+  <script src="js/updatebook/app.js"></script>
+</html>
+
+{{ end }}
