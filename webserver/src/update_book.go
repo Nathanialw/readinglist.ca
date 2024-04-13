@@ -12,13 +12,31 @@ import (
 //display the book data in the form
 //update the book data in the DB
 
+func getAllBooksFromDBAllProperties() []Book {
+	books := []Book{}
+	rows, err := contentDB.Query("SELECT title, subtitle, author, publish_year, image, synopsis, link_amazon, link_indigo, link_pdf, link_epub, link_handmade, link_text FROM books")
+	if err != nil {
+		fmt.Println(err)
+	}
+	for rows.Next() {
+		book := Book{}
+		err = rows.Scan(&book.Title, &book.Subtitle, &book.Author, &book.Publish_year, &book.Image, &book.Synopsis, &book.Link_amazon, &book.Link_indigo, &book.Link_pdf, &book.Link_epub, &book.Link_handmade, &book.Link_text)
+		if err != nil {
+			fmt.Println(err)
+		}
+		books = append(books, book)
+	}
+
+	return books
+}
+
 func updatebook(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
 
 	var data UserSession
 	data.LoggedIn = LoginStatus(r)
 	data.Admin = AdminStatus(r)
-	data.Books = getAllBooksFromDB()
+	data.Books = getAllBooksFromDBAllProperties()
 
 	books := make([]Book, len(data.Books))
 	for i, book := range data.Books {
