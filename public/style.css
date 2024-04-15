@@ -404,6 +404,7 @@ ul {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-around;
+  margin: 0 100px;
 }
 
 .chart-links li {
@@ -416,7 +417,7 @@ ul {
   transition: var(--transition);
   max-width: 600px;
   margin: 0 auto;
-  font-size: 2rem;
+  font-size: 1.25rem;
   text-transform: capitalize;
 }
 
@@ -427,6 +428,11 @@ ul {
 
 .chart-links-misc {
   margin-top: 2rem;
+}
+
+.account-links {
+  margin: 0 auto;
+  width: 70%;
 }
 
 /* random book chart */
