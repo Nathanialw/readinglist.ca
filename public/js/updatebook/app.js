@@ -16,14 +16,14 @@ function  IsSetRawText(value) {
 function SetHTML (selectedBook) {
     document.getElementById("book-form").innerHTML = `
     <form class="form" action="/submitupdatebook" method="post" enctype="multipart/form-data">
-    <label class="form-label" for="title">Title</label>
+    <label class="form-label" for="title">Title:</label>
     <input class="form-input" type="text" id="title" name="title" ${IsSet(selectedBook.Title)} required>
-    <label class="form-label" for="title">Subtitle</label>
+    <label class="form-label" for="title">Subtitle:</label>
     <input class="form-input" type="text" id="subtitle" name="subtitle" ${IsSet(selectedBook.Subtitle)}>
-    <label class="form-label" for="author">Author</label>
+    <label class="form-label" for="author">Author:</label>
     <input class="form-input" type="text" id="author" name="author" ${IsSet(selectedBook.Author)}>
     <span class="form-adjacent" style="margin: 1rem auto;">
-        <label class="form-label form-adjacent" for="year">Year Published</label>
+        <label class="form-label form-adjacent" for="year">Year Published:</label>
         <input class="form-input form-adjacent" style="width: 150px;" type="number" min="1" max="6000" id="year" name="publish_year" ${IsSet(selectedBook.Publish_year)} required>
         <select class="form-input form-adjacent" style="text-transform: capitalize; width: 125px; font-size: 0.75rem" id="publish_era" name="publish_era" required>
             <option value="AD">AD</option>
@@ -35,17 +35,19 @@ function SetHTML (selectedBook) {
         <img class="form-image" id="image-preview" src="${selectedBook.Image}" alt="Book Cover Preview">
         <input class="form-input form-row" type="file" id="image" name="image" ${IsSet(selectedBook.Image)}>
     </span>
-    <label class="form-label" for="synopsis">Synopsis</label>
+    <label class="form-label" for="synopsis">Synopsis:</label>
     <textarea class="form-input form-desc" id="synopsis" name="synopsis" ${SetTextAreaHieght(selectedBook)} style="resize: none;" ${IsSet(selectedBook.Synopsis)} required>${IsSetRawText(selectedBook.Synopsis)}</textarea>
-    <label class="form-label" for="link_amazon">Amazon Link</label>
+    <label class="form-label" for="link_amazon">Amazon Link:</label>
     <input class="form-input" type="url" id="link_amazon" name="link_amazon" ${IsSet(selectedBook.Link_amazon)}>
-    <label class="form-label" for="link_indigo">Indigo Link</label>
+    <label class="form-label" for="link_indigo">Indigo Link:</label>
     <input class="form-input" type="url" id="link_indigo" name="link_indigo" ${IsSet(selectedBook.Link_indigo)}>
-    <label class="form-label" for="link_pdf">PDF Link</label>
+    <label class="form-label" for="link_pdf">PDF Link:</label>
     <input class="form-input" type="url" id="link_pdf" name="link_pdf" ${IsSet(selectedBook.Link_pdf)}>
-    <label class="form-label" for="link_epub">EPUB Link</label>
+    <label class="form-label" for="link_epub">EPUB Link:</label>
     <input class="form-input" type="url" id="link_epub" name="link_epub" ${IsSet(selectedBook.Link_epub)}">
-    <label class="form-label" for="link_text">Text Link</label>
+    <label class="form-label" for="link_handmade">Handmade Link:</label>
+    <input class="form-input" type="url" id="link_handmade" name="link_handmade" ${IsSet(selectedBook.Link_handmade)}">
+    <label class="form-label" for="link_text">Text Link:</label>
     <input class="form-input" type="url" id="link_text" name="link_text" ${IsSet(selectedBook.Link_text)}">
     <input class="btn btn-center btn-submit" type="submit" value="Update Book">
     </form>
