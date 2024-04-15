@@ -28,10 +28,7 @@
       <section class="overview-chart">
         <h2>{{ .Category.Category }}</h2>
         <div class="title-underline"></div>
-        <img
-          src="{{ .Category.Image }}"
-          alt="{{ .Category.Category }} chart"
-          class="img"
+        <img src="{{ .Category.Image }}" alt="{{ .Category.Category }} chart" class="img chart-img"
         />
         <p class="overview-text">
           {{ if ne .Category.Description "NA" }} {{ .Category.Description }} {{ end }}

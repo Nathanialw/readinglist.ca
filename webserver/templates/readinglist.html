@@ -26,11 +26,8 @@
     <main class="main-container">
       <section class="overview-chart">
         <h2>{{ .Reading.Reading_list.Name }}</h2>
-        <img
-          src="{{ .Reading.Reading_list.Chart }}"
-          alt="{{ .Reading.Reading_list.Name }} chart"
-          class="img"
-        />
+        <div class="title-underline"></div>
+        <img src="{{ .Reading.Reading_list.Chart }}" alt="{{ .Reading.Reading_list.Name }} chart" class="img chart-img"/>
         <p class="overview-text">
           {{ if ne .Reading.Reading_list.Description "NA" }} {{ .Reading.Reading_list.Description }} {{ end }}
         </p>
