@@ -269,6 +269,12 @@ ul {
   align-items: center;
 }
 
+.form-image {
+  margin-right: 2.5rem;
+  width: 20%;
+  max-width: var(--fixedWidth);
+}
+
 ::placeholder {
   font-family: inherit;
   color: var(--primary-400);

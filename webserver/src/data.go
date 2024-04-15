@@ -27,6 +27,7 @@ type ReadingList struct {
 }
 
 type Book struct {
+	Uid           string
 	Title         string
 	Subtitle      string
 	Author        string
@@ -53,10 +54,15 @@ type Reading struct {
 }
 
 var contentDB *sql.DB
+var submitDB *sql.DB
 
 func Init() {
 	var err error
 	contentDB, err = sql.Open("sqlite3", "../database/contentDB.sqlite3")
+	if err != nil {
+		log.Fatal(err)
+	}
+	submitDB, err = sql.Open("sqlite3", "../database/submitDB.sqlite3")
 	if err != nil {
 		log.Fatal(err)
 	}

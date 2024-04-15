@@ -48,13 +48,23 @@ func updatebook(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	generateHTML(w, data, "updatebook", "navbar", "footer", "updatebook")
 }
 
-func retievebook(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+func submitupdatebook(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	fmt.Printf("message received from %s\n"+p.ByName("name"), r.RemoteAddr)
+	//check on the browser side first and give feedback to the user
+	//then check on the server side
+	//if this fails it should redirect to the addbook page
 
 	var data UserSession
 	data.LoggedIn = LoginStatus(r)
-	data.Admin = AdminStatus(r)
-	//	data.Book = GetBookFromDB(r, p.ByName("title"))
 
-	generateHTML(w, data, "updatebook", "navbar", "footer", "updatebook")
+	if !data.LoggedIn {
+		fmt.Println("not logged in\n")
+		notfound(w, r, p)
+		return
+	}
+	fmt.Printf("attempting to update book\n")
+	if !VerifyAndInsertBook(w, r, submitDB) {
+		fmt.Printf("adding book failed\n")
+	}
+	http.Redirect(w, r, "/updatebook", http.StatusSeeOther)
 }
