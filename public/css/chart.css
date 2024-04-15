@@ -69,13 +69,30 @@ p {
   max-width: 1000px;
   margin: 0 auto;
   object-fit: contain;
-  height: 600px;
+  height: 700px;
 }
 
 .overview-text {
   max-width: 900px;
   padding: 2rem;
   margin: 0 auto;
+}
+
+.category-chart {
+  text-align: center;
+}
+
+.category-chart h2 {
+  padding-top: 4rem;
+  font-size: 5rem;
+}
+
+.category-img {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+  object-fit: contain;
+  height: 400px;
 }
 
 /* specific book info */
