@@ -10,16 +10,17 @@ import (
 var currentPage string = "/"
 
 type UserSession struct {
-	Username    string
-	Admin       bool
-	LoggedIn    bool
-	Reading     Reading
-	Book        Book
-	Category    Category
-	Categories  []Category
-	ReadingList []ReadingList
-	Books       []Book
-	JsonBooks   string
+	Username         string
+	Admin            bool
+	LoggedIn         bool
+	Reading          Reading
+	Book             Book
+	Category         Category
+	Categories       []Category
+	ReadingList      []ReadingList
+	Books            []Book
+	JsonBooks        string
+	JsonReadingLists string
 }
 
 func signup(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {

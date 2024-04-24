@@ -25,15 +25,67 @@
 
     <main class="main-container">
         <article>
-          <h3 class="title">Update Rading List</h3>
+          <h3 class="title">Update Reading List</h3>
           <div class="title-underline"></div>
+          <form class="form" action="">
+            <label class="form-label" for="search">Select a reading list</label>
+            <select class="form-input form-row" style="text-transform: capitalize;" name="readingLists" id="readingLists"></select>
+          </form>
+          <p class="form-link">
+            <a href="/addreadinglist">Add a new reading list instead?</a>
+          </p>
         </article>
+
+        <article id="readinglist-form">
+          <form class="form" action="/submitreadinglist" method="post" enctype="multipart/form-data">
+            <label class="form-label" for="name">Name:</label>
+            <input class="form-input form-row" type="text" id="name" name="name" placeholder="Reading List Name" value="" required>
+            <span class="form-adjacent" style="margin: 1rem auto;">
+                <label class="form-label" for="image">Image:</label>
+                <img class="form-image" id="image-preview" src="" alt="Book Cover Preview">  
+                <input class="form-input form-row" type="file" id="image" name="image" required>
+            </span>
+            <label class="form-label" for="sort">books:</label>
+            <ul id="readingList">
+              <li id="book">
+                  <span class="form-adjacent">
+                  <select class="form-input form-row form-adjacent" style="text-transform: capitalize; width: 125px; font-size: 0.75rem;" id="sort1" name="sort1" required>
+                      <option value="byTitle" id="byTitle">Sort By Title</option>
+                      <option value="byAuthor" id="byAuthor">Sort By Author</option>
+                      <option value="bySubtitle" id="bySubtitle">Sort By Subtitle</option>
+                  </select>
+                  <select class="form-input form-row form-adjacent" style="text-transform: capitalize; font-size: 0.75rem" id="book1" name="book1" required></select>
+                  <button class="btn" id="remove1" name="remove1" style="margin-left: 10px; text-transform: capitalize; font-size: 0.75rem">Remove</button>
+                  </span>
+              </li>
+            </ul>
+            <button class="btn btn-center" style="width: 100px; margin: 0.5rem auto;" id="addBook" type="button">Add Book</button>
+            <label class="form-label" for="category">Category:</label>
+            <select class="form-input form-row" style="text-transform: capitalize;" id="category" name="category" required>
+                {{ range .Categories }}
+                  <option value="{{ .Category }}">{{ .Category }}</option>
+                {{ end }}
+            </select>
+            <label class="form-label" for="description">Description:</label>
+            <textarea class="form-input form-desc" id="description" rows="4" name="description" style="resize: none;" required></textarea>
+            <input class="btn btn-center" type="submit" value="Submit">
+        </form>
+        </article>
+
     </main>
 
     <footer id="footer">
         {{ template "footer" . }}
       </footer>
-
+      
+      <script>
+        var readinglists = JSON.parse('{{.JsonReadingLists}}');
+        var books = JSON.parse('{{.JsonBooks}}');
+        // You can now use the books array in your JavaScript code
+      </script>
+    
+      <script src="js/addreadinglist/app.js"></script>
+      <script src="js/updatereadinglist/app.js"></script>
    </body>
 </html>
 

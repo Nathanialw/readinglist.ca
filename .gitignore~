@@ -1,0 +1,8 @@
+README.md
+todo.txt
+.gitignore
+.git/*
+.git
+.vscode/*
+.idea/*
+/webserver/database/*

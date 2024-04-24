@@ -1,16 +1,37 @@
+'use strict'
+
 function  IsSet(value) {
     let text = "placeholder=\"Not Set\""
     if (value != "" && value != "NA") {
         text = "value=\"" + value + "\""
     }
-    return text
+    return sanitizeHTML(text)
 }
 
-function  IsSetRawText(value) {
+function IsSetRawText(value) {
     if (value == "" || value == "NA") {
-        return ""
+        value = ""
     }
-    return value
+    return sanitizeHTML(value)
+}
+
+function sanitizeHTML(text) {
+    let div = document.createElement('div');
+    div.innerText = text;
+    return div.innerHTML;
+}
+
+function sanitizeImageUrl(url) {
+    return isValidImageUrl(url) ? url : '';
+}
+
+function isValidImageUrl(url) {
+    try {
+        new URL(url, window.location.href);
+    } catch (_) {
+        return false;  
+    }
+    return url.endsWith('.png') || url.endsWith('.jpg') || url.endsWith('.jpeg') || url.endsWith('.gif');
 }
 
 function SetHTML (selectedBook) {
@@ -32,7 +53,7 @@ function SetHTML (selectedBook) {
     </span>
     <label class="form-label" for="image">Book Cover:</label>
     <span class="form-adjacent" style="margin: 1rem auto;">
-        <img class="form-image" id="image-preview" src="${selectedBook.Image}" alt="Book Cover Preview">
+        <img class="form-image" id="image-preview" src="${sanitizeImageUrl(selectedBook.Image)}" alt="Book Cover Preview">  
         <input class="form-input form-row" type="file" id="image" name="image" ${IsSet(selectedBook.Image)}>
     </span>
     <label class="form-label" for="synopsis">Synopsis:</label>
@@ -57,46 +78,28 @@ function SetHTML (selectedBook) {
         var imageUrl = URL.createObjectURL(selectedFile);
         document.getElementById("image-preview").src = imageUrl;
     });
+    
+    let synopsis = document.getElementById("synopsis")
+    document.getElementById("synopsis").addEventListener("input", () => {
+        let numChars = synopsis.value.length;
+        let charsPerLine = 80; // adjust this value based on the width of the textarea and the size of the font
+        let numLines = Math.ceil(numChars / charsPerLine);
+        if (synopsis.value.includes('\n')) {
+            numLines += synopsis.value.split('\n').length - 1;
+        }
+
+        synopsis.setAttribute("rows", numLines)
+    });
 }
-
-
-
 
 function SetTextAreaHieght (selectedBook) {
     let description = IsSetRawText(selectedBook.Synopsis);
     let numChars = description.length;
-    let charsPerLine = 50; // adjust this value based on the width of the textarea and the size of the font
+    let charsPerLine = 80; // adjust this value based on the width of the textarea and the size of the font
     let numLines = Math.ceil(numChars / charsPerLine);
 
     return "rows=\"" + numLines + "\""
 }
-
-//I need to comme up with a way to dynamically add more lines to the height textarea when the user types more text without redoing the whol form html
-
-function SetTextAreaHieght (selectedBook) {
-    let description = IsSetRawText(selectedBook.Synopsis);
-    let numChars = description.length;
-    let charsPerLine = 50; // adjust this value based on the width of the textarea and the size of the font
-    let numLines = Math.ceil(numChars / charsPerLine);
-
-    return "rows=\"" + numLines + "\""
-}
-
-
-
-// function UpdateTextAreaHeight (selectedBook) {
-//     document.getElementById("description").innerHTML = `
-//     <textarea class="form-input form-desc" id="description" name="description" style="resize: none;" ${IsSet(selectedBook.Synopsis)} required>${IsSetRawText(selectedBook.Synopsis)}</textarea>
-//     `
-
-//     let textarea = document.getElementById("description");
-//     textarea.addEventListener("input", function() {
-//         let numLines = (this.value.match(/\n/g) || []).length + 1;
-//         this.rows = numLines;
-//     });
-// }
-
-
 
 //replace the html in the select options with the sorted array
 function displayBooks(bookList) {
@@ -123,21 +126,17 @@ function displayBooks(bookList) {
     if (selectedOption == "") {
         selectedOption = books[0].Title
         // selectedOption = "Select a book..."
-        console.log(selectedOption)
     }
     document.getElementById(bookList.id).value = selectedOption;
     let selectedBook = books.find(book => book.Title === selectedOption)
-
     SetHTML(selectedBook)
 }
 
 displayBooks("bookList")
 
-
-
 //get the books from the server
 document.getElementById("bookList").addEventListener("change", function () {
-    selectedOption = document.getElementById(bookList.id).value;
+    var selectedOption = document.getElementById(bookList.id).value;
     let selectedBook = books.find(book => book.Title === selectedOption)
     SetHTML(selectedBook)
 })

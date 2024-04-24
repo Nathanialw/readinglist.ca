@@ -44,15 +44,15 @@
 
     <footer id="footer">
         {{ template "footer" . }}
-      </footer>
+    </footer>
 
-   </body>
-   <script>
-    var books = JSON.parse('{{.JsonBooks}}');
-    // You can now use the books array in your JavaScript code
-  </script>
+    <script>
+      var books = JSON.parse('{{.JsonBooks}}');
+      // You can now use the books array in your JavaScript code
+      </script>
 
-  <script src="js/updatebook/app.js"></script>
+    <script src="js/updatebook/app.js"></script>
+  </body>
 </html>
 
 {{ end }}
