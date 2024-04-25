@@ -37,7 +37,42 @@
 
 
         <article id="book-form">
-
+          <form class="form" action="/submitupdatebook" method="post" enctype="multipart/form-data">
+            <label class="form-label" for="title">Title:</label>
+            <input class="form-input" type="text" id="title" name="title" placeholder="Not set" required>
+            <label class="form-label" for="subtitle">Subtitle:</label>
+            <input class="form-input" type="text" id="subtitle" name="subtitle" placeholder="Not set" required>
+            <label class="form-label" for="author">Author:</label>
+            <input class="form-input" type="text" id="author" name="author" placeholder="Not set" required>
+            <span class="form-adjacent" style="margin: 1rem auto;">
+                <label class="form-label form-adjacent" for="publish_year">Year Published:</label>
+                <input class="form-input form-adjacent" style="width: 150px;" type="number" min="1" max="6000" id="publish_year" name="publish_year" placeholder="Not set" required>
+                <select class="form-input form-adjacent" style="text-transform: capitalize; width: 125px; font-size: 0.75rem" id="publish_era" name="publish_era" required>
+                    <option value="AD">AD</option>
+                    <option value="BC">BC</option>
+                </select>
+            </span>
+            <label class="form-label" for="image">Book Cover:</label>
+            <span class="form-adjacent" style="margin: 1rem auto;">
+                <img class="form-image" id="image-preview" src="" alt="Book Cover Preview">  
+                <input class="form-input form-row" type="file" id="image" name="image" required>
+            </span>
+            <label class="form-label" for="synopsis">Synopsis:</label>
+            <textarea class="form-input form-desc" id="synopsis" name="synopsis" rows="4" style="resize: none;" placeholder="Not set" required></textarea>
+            <label class="form-label" for="link_amazon">Amazon Link:</label>
+            <input class="form-input" type="url" id="link_amazon" name="link_amazon" placeholder="Not set">
+            <label class="form-label" for="link_indigo">Indigo Link:</label>
+            <input class="form-input" type="url" id="link_indigo" name="link_indigo" placeholder="Not set">
+            <label class="form-label" for="link_pdf">PDF Link:</label>
+            <input class="form-input" type="url" id="link_pdf" name="link_pdf" placeholder="Not set">
+            <label class="form-label" for="link_epub">EPUB Link:</label>
+            <input class="form-input" type="url" id="link_epub" name="link_epub" placeholder="Not set">
+            <label class="form-label" for="link_handmade">Handmade Link:</label>
+            <input class="form-input" type="url" id="link_handmade" name="link_handmade" placeholder="Not set">
+            <label class="form-label" for="link_text">Text Link:</label>
+            <input class="form-input" type="url" id="link_text" name="link_text" placeholder="Not set">
+            <input class="btn btn-center btn-submit" type="submit" value="Update Book">
+            </form>
         </article>
 
     </main>
