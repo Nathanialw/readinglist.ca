@@ -1,6 +1,9 @@
 'use strict'
 
 function  IsSet(value) {
+    if (value == "NA") {
+        value = ""
+    }
     return sanitizeHTML(value)
 }
 
@@ -17,54 +20,51 @@ function sanitizeHTML(text) {
     return div.innerHTML;
 }
 
-function sanitizeImageUrl(url) {
-    return isValidImageUrl(url) ? url : '';
+async function sanitizeImageUrl(url) {
+    return await isValidImageUrl(url) ? url : '';
 }
 
-function isValidImageUrl(url) {
+async function isValidImageUrl(url) {
     try {
-        new URL(url, window.location.href);
-    } catch (_) {
-        return false;  
+        const response = await fetch(url, { method: 'HEAD' });
+        const contentType = response.headers.get('Content-Type');
+        if (!contentType.startsWith('image/')) {
+            return false;
+        }
+    } catch (error) {
+        return false;
     }
     return url.endsWith('.png') || url.endsWith('.jpg') || url.endsWith('.jpeg') || url.endsWith('.gif');
 }
 
-function SetHTML(selectedReadingList) {
-    let name = document.getElementById("name")
-    name.setAttribute("value", IsSet(selectedReadingList.Name))
-    let imagepreview = document.getElementById("image-preview")
-    imagepreview.setAttribute("src", sanitizeImageUrl(selectedReadingList.Chart))
+
+async function SetHTML(selectedReadingList) {
+    document.getElementById("name").value = IsSet(selectedReadingList.Name)
+    document.getElementById("image-preview").src = await sanitizeImageUrl(selectedReadingList.Chart)
+    document.getElementById("category").value = IsSet(selectedReadingList.Category)
+    
     let description = document.getElementById("description")
-    description.innerText = IsSet(selectedReadingList.Description)
-    description.setAttribute("rows", SetTextAreaHieght(selectedReadingList))
+    description.value = IsSet(selectedReadingList.Description)
+    SetTextAreaHieght()
 
     document.getElementById("image").addEventListener("change", function (event) {
         var selectedFile = event.target.files[0];
         var imageUrl = URL.createObjectURL(selectedFile);
-        document.setAttribute("src", imageUrl)
+        document.getElementById("image-preview").src = imageUrl;
     });
     
-    document.getElementById("description").addEventListener("input", () => {
-        let numChars = description.value.length;
-        let charsPerLine = 70; // adjust this value based on the width of the textarea and the size of the font
-        let numLines = Math.ceil(numChars / charsPerLine);
-        if (description.value.includes('\n')) {
-            numLines += description.value.split('\n').length - 1;
-        }
-        numLines < 4 ? numLines = 4 : numLines
-        description.setAttribute("rows", numLines)
-    });
+    document.getElementById("description").addEventListener("input", SetTextAreaHieght);
 }
 
 function SetTextAreaHieght(selectedReadingList) {
-    let description = IsSetRawText(selectedReadingList.Description);
-    let numChars = description.length;
+    let numChars = description.value.length;
     let charsPerLine = 70; // adjust this value based on the width of the textarea and the size of the font
     let numLines = Math.ceil(numChars / charsPerLine);
-
+    if (description.value.includes('\n')) {
+        numLines += description.value.split('\n').length - 1;
+    }
     numLines < 4 ? numLines = 4 : numLines
-    return numLines
+    description.setAttribute("rows", numLines)
 }
 
 //replace the html in the select options with the sorted array
@@ -106,6 +106,7 @@ document.getElementById("readingLists").addEventListener("change", function () {
     let selectedReadingList = readinglists.find(readinglist => readinglist.Name === selectedOption)
     SetHTML(selectedReadingList)
 })
+
 
 
 
