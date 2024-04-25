@@ -1,15 +1,16 @@
-{
-  const getElement = (selector) => {
-    const el = document.querySelector(selector);
-    if (el) return el;
-    throw new Error(`Please check your classes : ${selector} does not exist`);
-  };
+'use strict'
 
-  const navToggle = getElement(".bars");
-  const links = getElement(".nav-links");
+const getElement = (selector) => {
+  const el = document.querySelector(selector);
+  if (el) return el;
+  throw new Error(`Please check your classes : ${selector} does not exist`);
+};
 
-  navToggle.addEventListener("click", function () {
-    links.classList.toggle("show-links");
-  });
+const navToggle = getElement(".bars");
+const links = getElement(".nav-links");
 
-}
+navToggle.addEventListener("click", () => {
+  links.classList.toggle("show-links");
+});
+
+

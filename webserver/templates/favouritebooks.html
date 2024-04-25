@@ -1,0 +1,39 @@
+{{ define "favouritebooks" }}
+<header>
+    <h1 class="title title-header">Favourite Books</h1>
+    <div class="title-underline"></div>
+</header>
+
+<ul>
+    {{ range .Books }}
+    <li>
+        <div class="container">
+        <div class="card">
+            <article>
+                <div class="book-img" id="image">
+                    <img src='{{ .Image }}' class='img' alt='{{ .Title }}'>
+                </div>
+            </article>
+
+            <div class="book-info">
+                <h3 class="book-title" id="title">{{.Title}}</h3>
+                <h4 class="book-subtitle" id="subtitle">{{ if ne .Subtitle "NA" }} {{.Subtitle}} {{ end }}</h4>
+                <div class="title-underline"></div>
+                <h4 class="book-author" id="author">{{.Author}}</h4>
+                <ul class="buy-links">
+                    {{ if ne .Link_pdf "NA" }} <li id="link_pdf"><a class='fa fa-file-pdf' href='{{.Link_pdf}}' target='_blank'></a></li> {{ end }}
+                    {{ if ne .Link_epub "NA" }} <li id="link_epub"><a class='fa fa-book-open' href='{{.Link_epub}}' target='_blank' ></a></li> {{ end }}
+                    {{ if ne .Link_amazon "NA" }} <li id="link_amazon"><a class='fab fa-amazon' href='{{.Link_amazon}}' target='_blank' ></a></li> {{ end }}
+                    {{ if ne .Link_indigo "NA" }} <li id="link_indigo"><a class='' href='{{.Link_indigo}}' target='_blank'>indigo</a></li> {{ end }}
+                    {{ if ne .Link_handmade "NA" }} <li id="link_handmade"><a class='fa fa-book' href='{{.Link_handmade}}' target='_blank'></a></li> {{ end }}
+                    {{ if ne .Link_text "NA" }} <li id="link_text"><a class='fa fa-file-text' href='{{.Link_text}}' target='_blank'></a></li> {{ end }}
+                </ul>
+            </div>
+        </div>        
+        {{ if ne .Synopsis "NA" }} <p class="book-synopsis" id="synopsis">{{ .Synopsis }}</p> {{ end }}
+        </div>   
+    </li>
+    {{ end }}   
+</ul>
+
+{{ end }}

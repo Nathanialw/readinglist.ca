@@ -66,10 +66,6 @@ func Init() {
 	if err != nil {
 		log.Fatal(err)
 	}
-	userDB, err = sql.Open("sqlite3", "../database/userDB.sqlite3")
-	if err != nil {
-		log.Fatal(err)
-	}
 }
 
 func Categories() (threads []Category, err error) {
@@ -89,7 +85,9 @@ func Categories() (threads []Category, err error) {
 		threads = append(threads, th)
 	}
 	fmt.Printf("category loaded")
-	rows.Close()
+	if rows != nil {
+		rows.Close()
+	}
 	return
 }
 
@@ -109,7 +107,9 @@ func ReadingLists(list string) (threads []ReadingList, err error) {
 		threads = append(threads, th)
 		fmt.Printf("name: %s, category: %s\n", th.Name, th.Category)
 	}
-	rows.Close()
+	if rows != nil {
+		rows.Close()
+	}
 	return
 }
 
@@ -142,7 +142,9 @@ func Books(list string) (threads []Book, err error) {
 		}
 	}
 
-	rows.Close()
+	if rows != nil {
+		rows.Close()
+	}
 	return
 }
 
@@ -160,7 +162,9 @@ func GetReadingList(name string) (threads ReadingList, err error) {
 		}
 		fmt.Printf("name: %s, image: %s\n", threads.Name, threads.Chart)
 	}
-	rows.Close()
+	if rows != nil {
+		rows.Close()
+	}
 	return
 }
 
@@ -178,6 +182,8 @@ func GetCategory(name string) (threads Category, err error) {
 		}
 		fmt.Printf("category: %s, image: %s\n", threads.Category, threads.Image)
 	}
-	rows.Close()
+	if rows != nil {
+		rows.Close()
+	}
 	return
 }

@@ -21,6 +21,15 @@ type UserSession struct {
 	Books            []Book
 	JsonBooks        string
 	JsonReadingLists string
+
+	FavouriteBooks     []Book
+	JsonFavouriteBooks string
+	QueuedBooks        []Book
+	JsonQueuedBooks    string
+	ReadingHistory     []Book
+	JsonReadingHistory string
+	//post history
+	//post history json
 }
 
 func signup(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
@@ -70,6 +79,13 @@ func account(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	data.Username = GetUsername(r)
 	//can save a hashed value as a cookie and use that to get the user's data
 
+	data.FavouriteBooks, _ = GetFavouriteBooks(data.Username)
+	data.QueuedBooks, _ = GetQueuedBooks(data.Username)
+	data.ReadingHistory, _ = GetReadingHistory(data.Username)
+	data.ReadingList, _ = GetSavedReadingLists(data.Username)
+	//get post history
+
+	//stringify and send and a json for the js to handle
 	generateHTML(w, data, "account", "navbar", "footer", "account")
 }
 

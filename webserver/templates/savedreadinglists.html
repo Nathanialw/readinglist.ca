@@ -1,0 +1,31 @@
+{{ define "savedreadinglists" }}
+<!-- info cards -->
+<article>
+<!-- section title -->
+<header>
+    <h1 class="title title-header">saved reading lists</h1>
+    <div class="title-underline"></div>
+</header>
+
+<!-- subcategory card -->
+<ul class="main-links">
+    {{ range .ReadingList }}
+    <li>
+    <a href="/readinglist/{{ .Name }}" class="main-card">
+        <img
+        src="{{ .Image }}"
+        class="img card-img"
+        />
+        <section class="card-info">
+        <h3>{{ .Name }}</h3>
+        <div class="title-underline"></div>
+        <p>
+            {{ .Description }}
+        </p>
+        </section>
+    </a>
+    </li>
+    {{ end }}
+</ul>
+</article>
+{{ end }}

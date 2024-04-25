@@ -1,7 +1,6 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 	"net/http"
 	"strings"
@@ -10,8 +9,6 @@ import (
 
 	_ "github.com/mattn/go-sqlite3"
 )
-
-var userDB *sql.DB
 
 func FieldLength(r *http.Request) bool {
 	//empty fields
@@ -50,7 +47,7 @@ func FieldLengthLogin(r *http.Request) bool {
 }
 
 func UserExists(r *http.Request) bool {
-	rows, _ := userDB.Query("select username from users where username = ?", r.FormValue("username"))
+	rows, _ := contentDB.Query("select username from users where username = ?", r.FormValue("username"))
 	if rows.Next() {
 		fmt.Print("User already exist.\n")
 		rows.Close()
@@ -116,7 +113,7 @@ func InsertIntoDB(r *http.Request) bool {
 	hashedPassword, _ := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
 
 	// Prepare SQL statement
-	stmt, err := userDB.Prepare("INSERT INTO users(username, password) VALUES(?, ?)")
+	stmt, err := contentDB.Prepare("INSERT INTO users(username, password) VALUES(?, ?)")
 	if err != nil {
 		return false
 	}
@@ -132,7 +129,7 @@ func GetFromDB() bool {
 }
 
 func CheckAdmin(username string) bool {
-	rows, err := userDB.Query("select admin from users where username = ?", username)
+	rows, err := contentDB.Query("select admin from users where username = ?", username)
 
 	if err != nil {
 		fmt.Printf("failed to authenticate admin priviliges: %s, %s\n", username, err)
@@ -159,7 +156,7 @@ func Authenticate(r *http.Request) bool {
 		return false
 	}
 
-	rows, err := userDB.Query("select username, password from users where username = ?", username)
+	rows, err := contentDB.Query("select username, password from users where username = ?", username)
 
 	if err != nil {
 		fmt.Printf("failed to authenticate: %s, %s\n", username, err)

@@ -45,11 +45,11 @@ func main() {
 	r.GET("/updatereadinglist", updatereadinglist)
 	r.POST("/submitupdatereadinglist", submitupdatereadinglist)
 
-	r.GET("/readinglists", underconstruction)
-	r.GET("/favoritedbooks", underconstruction)
-	r.GET("/readinghistory", underconstruction)
-	r.GET("/queuedbooks", underconstruction)
-	r.GET("/posthistory", underconstruction)
+	r.GET("/favouritedbooks", ShowFavouritedBooks)
+	r.GET("/readinglists", ShowSavedReadingLists)
+	r.GET("/readinghistory", ShowReadingHistory)
+	r.GET("/queuedbooks", ShowQueuedBooks)
+	r.GET("/posthistory", ShowPostHistory)
 
 	server := http.Server{
 		Addr:    "localhost:12001",
