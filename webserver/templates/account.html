@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="/js/footer/style.css" />
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="/css/chart.css" />
+    <link rel="stylesheet" href="/js/account/style.css" />
   </head>
   
   <body>
@@ -25,72 +26,51 @@
 
     <main class="main-container">
       <article>
+
           <h1 class="title">Account</h1>
           <div class="title-underline"></div>
           
-          <h3 class="title">Contribute</h3>
-          <div class="title-underline"></div>
-          <ul class="chart-links account-links">
-            <li><a href="/addbook">Add a book</a></li>
-            <li><a href="/addreadinglist">Add a new reading list</a></li>
-            <li><a href="/updatebook">update a book</a></li>
-            <li><a href="/updatereadinglist">update a reading list</a></li>
-          </ul>
-          <br>
-          <h3 class="title">account</h3>
-          <div class="title-underline"></div>
-          <ul class="chart-links account-links">
-            <li><button class="btn btn-center" id="FavouritedBooks">Favourited Books</button></li>
-            <li><button class="btn btn-center" id="ReadingLists">Reading Lists</button></li>
-            <li><button class="btn btn-center" id="ReadingHistory">Reading History</button></li>
-            <li><button class="btn btn-center" id="QueuedBooks">Queued Books</button></li>
-            <li><button class="btn btn-center" id="PostHistory">Post History</button></li>
-          </ul>
-          
-          <article class="account-data" id="account-data">
-            <!--        {{ range .Reading.Books }}
-            <ul>
-              <li>
-                <div class="container">
-                  <div class="card">
-                      <article>
-                          <div class="book-img" id="image">
-                              <img src='{{ .Image }}' class='img' alt='{{ .Title }}'>
-                          </div>
-                      </article>
-      
-                      <div class="book-info">
-                          <h3 class="book-title" id="title">{{.Title}}</h3>
-                          <h4 class="book-subtitle" id="subtitle">{{ if ne .Subtitle "NA" }} {{.Subtitle}} {{ end }}</h4>
-                          <div class="title-underline"></div>
-                          <h4 class="book-author" id="author">{{.Author}}</h4>
-                          <ul class="buy-links">
-                              {{ if ne .Link_pdf "NA" }} <li id="link_pdf"><a class='fa fa-file-pdf' href='{{.Link_pdf}}' target='_blank'></a></li> {{ end }}
-                              {{ if ne .Link_epub "NA" }} <li id="link_epub"><a class='fa fa-book-open' href='{{.Link_epub}}' target='_blank' ></a></li> {{ end }}
-                              {{ if ne .Link_amazon "NA" }} <li id="link_amazon"><a class='fab fa-amazon' href='{{.Link_amazon}}' target='_blank' ></a></li> {{ end }}
-                              {{ if ne .Link_indigo "NA" }} <li id="link_indigo"><a class='' href='{{.Link_indigo}}' target='_blank'>indigo</a></li> {{ end }}
-                              {{ if ne .Link_handmade "NA" }} <li id="link_handmade"><a class='fa fa-book' href='{{.Link_handmade}}' target='_blank'></a></li> {{ end }}
-                              {{ if ne .Link_text "NA" }} <li id="link_text"><a class='fa fa-file-text' href='{{.Link_text}}' target='_blank'></a></li> {{ end }}
-                          </ul>
-                      </div>
-                  </div>        
-                  {{ if ne .Synopsis "NA" }} <p class="book-synopsis" id="synopsis">{{ .Synopsis }}</p> {{ end }}
-                </div>   
-              </li>
-            </ul>
-            {{ end }} -->
+          <article class="profile" id="profile">
+              <div>
+                <img class="img profile-img" src="assets/images/bunnies/404-bunny.jpg" alt="">
+              </div>
+              <div>
+                <!-- needs an edit button -->
+                <!-- so a table I think -->
+                <p class="profile-info">Nathan Walton</p>
+                <p class="profile-info">High River, Alberta</p>
+                <p class="profile-info">nathanial.ca</p>
+                <p class="profile-info">history, fantasy</p>
+                <p class="profile-info">Tolkien, Poe</p>
+                <p class="profile-info">March 2024</p>
+                <p class="profile-info">I like writing code and making stuff</p>
+              </div>
+              <div class="sub-container">
+                <ul class="account-btns">
+                  <li><button class="btn btn-center account-btn" id="FavouritedBooks">Favourited Books</button></li>
+                  <li><button class="btn btn-center account-btn" id="ReadingLists">Reading Lists</button></li>
+                  <li><button class="btn btn-center account-btn" id="ReadingHistory">Reading History</button></li>
+                  <li><button class="btn btn-center account-btn" id="QueuedBooks">Queued Books</button></li>
+                  <li><button class="btn btn-center account-btn" id="PostHistory">Post History</button></li>
+                </ul>
+                <div>
+                  <h5 class="title">Contribute</h5>
+                  <div class="title-underline"></div>
+                  <ul class="chart-links account-links">
+                    <li><a href="/addbook">Add a book</a></li>
+                    <li><a href="/addreadinglist">Add a new reading list</a></li>
+                    <li><a href="/updatebook">update a book</a></li>
+                    <li><a href="/updatereadinglist">update a reading list</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </article>
+        </article>      
+      
+        <article class="account-data" id="account-data">
 
-          <!-- 
-          <p class="overview-text">This is <span style="text-transform: capitalize">{{ .Username }}'s</span> account page</p>
-            user's reading lists 
-            favorited books
-            reading history
-            queued books            
-
-            post history          
-          -->
-      </article>      
+        </article>
     </main>
 
     <footer id="footer">

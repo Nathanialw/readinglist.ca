@@ -1,16 +1,29 @@
 {{ define "dailylist" }}
 
 <section class="random-chart">
-    <header class="title title-header">
-      <h1>featured</h1>
-    </header>
+  <header class="title title-header">
+    <h1>featured</h1>
     <div class="title-underline"></div>
+  </header>
 
-    <img
-      class="img"
-      src="./assets/images/charts/Classical/Bronze Age.jpg"
-      alt="bronze age"
-    />
-  </section>
+  <!-- subcategory card -->
+  <ul class="main-links">
+    <li>
+      <a href="/readinglist/{{ .Reading.Reading_list.Name }}" class="main-card">
+        <img
+          src="{{ .Reading.Reading_list.Image }}"
+          class="img card-img"
+        />
+        <section class="card-info">
+          <h3>{{ .Reading.Reading_list.Name }}</h3>
+          <div class="title-underline"></div>
+          <p>
+            {{ .Reading.Reading_list.Description }}
+          </p>
+        </section>
+      </a>
+    </li>
+  </ul>
+</section>
 
 {{ end }}

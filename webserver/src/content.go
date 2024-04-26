@@ -30,6 +30,9 @@ func home(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 	data.Categories, _ = Categories()
 	data.LoggedIn = LoginStatus(r)
 	data.Admin = AdminStatus(r)
+
+	data.Reading.Reading_list, _ = GetDailyReadingList()
+
 	generateHTML(w, data, "landing", "navbar", "footer", "dailylist", "category", "landing")
 }
 

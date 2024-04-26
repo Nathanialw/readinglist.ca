@@ -76,6 +76,8 @@ p {
   max-width: 900px;
   padding: 2rem;
   margin: 0 auto;
+  columns: 2;
+  column-gap: 2rem;
 }
 
 .category-chart {
@@ -154,11 +156,14 @@ p {
 @media screen and (max-width: 768px) {
   .book-img {
     margin: 0 auto;
-    width: 80vw;
+    max-width: 50vw;
   }
+
+  
 }
 
 @media screen and (min-width: 768px) {
+
   .book-info {
     margin-top: 0rem;
   }
@@ -166,12 +171,12 @@ p {
   .card {
     grid-template-columns: 1fr 1fr;
     margin-top: 4rem;
-    width: 992px;
     align-items: center;
     position: relative;
   }
 
   .book-img {
+    
     margin-right: 2rem;
   }
 
@@ -179,7 +184,7 @@ p {
     border-radius: var(--borderRadius);
     position: relative;
     box-shadow: var(--shadow-4);
-    width: 300px;
+    width: 270px;
     margin-left: 100px;
   }
 
@@ -189,7 +194,7 @@ p {
     position: absolute;
     border: 1rem solid var(--primary-600);
     border-radius: var(--borderRadius);
-    width: 300px;
+    width: 270px;
     height: 100%;
     left: -2.5rem;
     top: -2.5rem;
@@ -198,5 +203,11 @@ p {
   .book-synopsis {
     margin-top: 2rem;
     max-width: 992px;
+    columns: 2;
+    column-gap: 2rem;
+  }
+
+  .overview-text {
+    columns: 3;
   }
 }

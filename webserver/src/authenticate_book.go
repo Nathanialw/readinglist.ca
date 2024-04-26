@@ -233,7 +233,7 @@ func VerifyAndInsertBook(w http.ResponseWriter, r *http.Request, db *sql.DB) boo
 			systemPath = "../../public/assets/images/book_covers/400_" + handler.Filename
 			out, _ := os.Create(systemPath)
 			defer out.Close()
-			// Write the new image to the new file
+			//write the new image to the new file
 			png.Encode(out, m)
 
 			m = resize.Resize(100, 0, img, resize.Lanczos3)

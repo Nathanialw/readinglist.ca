@@ -78,7 +78,8 @@ body {
 }
 
 p {
-  margin-bottom: 1.5rem;
+  font-size: 1rem;
+  line-height: 1.25rem;
   max-width: 40em;
   hyphens: auto;
   text-align: justify;
@@ -430,11 +431,6 @@ ul {
   margin-top: 2rem;
 }
 
-.account-links {
-  margin: 0 auto;
-  width: 70%;
-}
-
 /* random book chart */
 
 .title {
@@ -449,9 +445,8 @@ ul {
 /* main links */
 
 .main-links {
-  display: flex;
+  display: grid;
   flex-flow: row wrap;
-  justify-content: space-between;
   gap: 2rem;
   padding: 2rem;
 }
@@ -470,6 +465,10 @@ ul {
   display: flex;
   text-align: center;
   flex-direction: column;
+
+  height: 500px;
+  max-width: 400px;
+  overflow: hidden;
 }
 
 .main-card:hover {
@@ -482,13 +481,16 @@ ul {
   padding: 0;
   border-radius: var(--borderRadius);
   aspect-ratio: 1;
+  max-height: 250px;
 }
 
 .card-info h3 {
   padding-top: 1rem;
 }
 
-.info-card p {
+.card-info p {
+  margin: 0;
+  padding: 0;
 }
 
 /* footer */
@@ -513,12 +515,16 @@ larger screen
     transform: translateY(0%);
   }
 
+  .main-links {
+    grid-template-columns: 1fr 1fr;
+  }
+
   .main-card {
     padding: 0;
     max-width: var(--max-width);
     display: grid;
-    grid-template-columns: 1fr 1fr;
     align-items: center;
+    max-width: 270px;
   }
 
   .card-info {
@@ -536,11 +542,15 @@ larger screen
   .main-links li {
     flex: 1 0 260px;
   }
-
+  
+  .main-links {
+    display: flex;
+    grid-template-columns: 1fr 1fr;
+  }
+  
   .main-card {
     display: flex;
     height: 500px;
-    max-width: 350px;
     overflow: hidden;
   }
 

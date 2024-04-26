@@ -1,12 +1,5 @@
 'use strict'
 
-
-//set the html with the new html and data called from the server
-function ReplaceHTML () {
-
-}
-
-
 function FetchAccountData(data) {
     console.log(data)
     fetch(data, {

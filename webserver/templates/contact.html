@@ -13,6 +13,7 @@
     <!-- index styles -->
     <link rel="stylesheet" href="/js/nav/style.css" />
     <link rel="stylesheet" href="/js/footer/style.css" />
+    <link rel="stylesheet" href="/js/contact/style.css" />
     <link rel="stylesheet" href="/style.css" />
     <link rel="stylesheet" href="/css/chart.css" />
   </head>
@@ -26,16 +27,25 @@
     <main class="main-container">
         <article>
           <h1 class="title">contact</h1>
-            <div class="title-underline"></div>
-            <p class="overview-text">This is the contact page</p>
-            <!-- 
-              contact form 
-              email
-              suggestions
-            
-            
-            -->
+          <div class="title-underline"></div>
+          <p>
+            Website made by Nathanial Walton
+            <br>
+            nathanial.ca
+            <br>
+            nathanial28@gmail.com
+          </p>
 
+          <form class="form" action="/suggestion" method="post" enctype="multipart/form-data">
+            <label class="form-label">suggestions</label>
+            <textarea class="form-input" name="suggestions" id="suggestions" rows="4" placeholder="Your suggestions here..."></textarea>
+            <button class="btn btn-center" type="submit" value="Submit">Submit</button>
+          </form>
+          <!-- 
+            contact form 
+            email
+            suggestions
+          -->
         </article>
     </main>
 

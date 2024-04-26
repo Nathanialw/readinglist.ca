@@ -23,6 +23,7 @@ func main() {
 
 	r.GET("/", home)
 	r.GET("/contact", contact)
+	r.POST("/suggestion", underconstruction)
 	r.GET("/about", about)
 	r.GET("/category/*categoryPath", category)
 	r.GET("/readinglist/*listPath", readinglist)
